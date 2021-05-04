@@ -1,7 +1,16 @@
-# Most show Xiao Xiaoran
+<p align="center" style="font-size:101px;color:red">Most show Xiao Xiaora</p>
+
+<br><br>
+# Welcome to Xiao Xiaoran Penetration journey
 
 
-<p style="font-size:30%;color:blue">肖萧然如冯虚御风而不知其所止 <br>飘飘然如遗世独立,羽化而登仙</p>
+<br><br>
+<p align="center" style="font-size:88px;color:red;font-family:华文行楷">肖萧然如冯虚御风而不知其所止<br>飘飘然如遗世独立, 羽化而登仙</p>
+<br><br>
+
+
+
+# Directory Structure -->DFCC
 
 
 
@@ -10,4 +19,4 @@
 
 
 
-*所有技术来自于-->红客,抖音,b站,腾讯课堂,韩立刚,老男孩教育,学神it,心东,小迪*
+*所有技术来自于-->红客,抖音,b站,腾讯课堂,韩立刚,老男孩教育,学神it,心东,千峰教育,传智播客,小迪*
