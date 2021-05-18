@@ -17,58 +17,57 @@ Most Show Xiao XiaoRan
 KALI -->Forever belief
 ========
 
-Mature can't play freely <br>
-When there is a lot of want to say <br>
-Happy is unhappy <br>
-Just a kind of doubt <br>
-So please don't take me <br>
-It's hard to be a life <br>
-Frozen into a lot of ridiculous words <br>
-Desolation of the eyes <br>
-Never be considered by you <br>
-I hope you really come through <br>
-You are the light is my wings <br>
-When I was injured <br>
-Will give me strength <br>
-Wind cream along the way <br>
-Will be in my heart <br>
-And you will live voyage for me.<br>
-You are like the sun like the sun<br>
-When I am confused<br>
-Will give me direction<br>
-Brave of the journey<br>
-Is my growth<br>
-And you will take the wind and waves<br>
-It's hard to live.<br>
-Frozen into fire<br>
-Desolation of the eyes<br>
-Never be considered by you<br>
-I hope you are really coming.<br>
-You are my wings<br>
-When I was injured<br>
-Will give me strength<br>
-Frost along the way<br>
-Will be in my heart<br>
-And you will live voyage for me.<br>
-You are like the sun like the sun<br>
-When I am confused<br>
-Will give me direction<br>
-Brave of the journey<br>
-Is my growth<br>
-And you will take the wind and waves<br>
-You are my wings<br>
-When I was injured<br>
-Will give me strength<br>
-Frost along the way<br>
-Will be in my heart<br>
-And you will live voyage for me.<br>
-You are like the sun like the sun<br>
-When I am confused<br>
-Will give me direction<br>
-Brave of the journey<br>
-Is my growth<br>
-And you will take the wind and waves<br>
-
+Mature play not free and easy <br/>
+When after a lot of want to say<br/>
+Happy or not happy<br/>
+It's just a puzzle<br/>
+So please leave me alone<br/>
+Sad is life<br/>
+What a ridiculous mistake to freeze into fire<br/>
+The loneliness of eyes<br/>
+Never been considered by you<br/>
+I hope you did come<br/>
+You are the light, my wings<br/>
+When I get hurt again<br/>
+Will give me strength<br/>
+The wind and frost along the way<br/>
+I'll keep that in mind<br/>
+And you'll sail for me<br/>
+You are the light, like the sun<br/>
+When I'm lost again<br/>
+Will give me direction<br/>
+The courage of the journey<br/>
+It's my growth<br/>
+And you'll ride the waves<br/>
+Sad is life<br/>
+What a ridiculous mistake to freeze into fire<br/>
+The loneliness of eyes<br/>
+Never in your discretion<br/>
+I hope you've been here<br/>
+You are the light of my wings<br/>
+When I get hurt again<br/>
+Will give me strength<br/>
+The wind and frost along the way<br/>
+I'll keep that in mind<br/>
+And you'll sail for me<br/>
+You are light like the sun<br/>
+When I'm lost again<br/>
+Will give me direction<br/>
+The courage of the journey<br/>
+It's my growth<br/>
+And you'll ride the waves<br/>
+You are the light of my wings<br/>
+When I get hurt again<br/>
+Will give me strength<br/>
+The wind and frost along the way<br/>
+I'll keep that in mind<br/>
+And you'll sail for me<br/>
+You are light like the sun<br/>
+When I'm lost again<br/>
+Will give me direction<br/>
+The courage of the journey<br/>
+It's my growth<br/>
+And you'll ride the waves<br/>
 
 
 
