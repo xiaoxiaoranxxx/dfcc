@@ -11,7 +11,6 @@
 
 <br>
 
-![xiao](http://www.uugai.com/logoa/logo_img_sc.php)
 # Directory Structure -->DFCC
 
 KALI -->Forever belief
