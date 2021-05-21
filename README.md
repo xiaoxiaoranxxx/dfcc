@@ -1,16 +1,16 @@
 ![xiao](https://img-blog.csdnimg.cn/20210518211707779.png#pic_center)
 
-<br><br>
+
+
 # Welcome to Xiao Xiaoran Penetration journey
 
-<br>
+
 
 # 肖萧然如冯虚御风而不知其所止
 # 飘飘然如遗世独立&nbsp;  ,  羽化而登仙
 
 <br>
 
-![xiao](http://www.uugai.com/logoa/logo_img_sc.php)
 # Directory Structure -->DFCC
 
 KALI -->Forever belief
