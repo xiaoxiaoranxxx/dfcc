@@ -5,6 +5,7 @@ title xiaoxiaoran
 
 :start
 color 1a
+:: start cmd
 color 2a
 color 3a
 color 4a
