@@ -5,7 +5,7 @@
 # Welcome to Xiao Xiaoran Penetration journey
 
 
-<img src="https://ss2.baidu.com/6ON1bjeh1BF3odCf/it/u=3356192396,2960287268&fm=15&gp=0.jpg ">
+<img src="https://ss2.baidu.com/6ON1bjeh1BF3odCf/it/u=3356192396,2960287268&fm=15&gp=0.jpg" width="100%" height="100%" >
 
 
 # 肖萧然如冯虚御风而不知其所止
@@ -71,10 +71,7 @@ It's my growth<br/>
 And you'll ride the waves<br/>
 
 
-<figure class="half">
-    <img src="https://ss2.baidu.com/6ON1bjeh1BF3odCf/it/u=2095491990,3815431535&fm=15&gp=0.jpg">
-    <img src="https://shitu-query-bj.bj.bcebos.com/2021-06-01/17/ada12fcb49d3425f?authorization=bce-auth-v1%2F7e22d8caf5af46cc9310f1e3021709f3%2F2021-06-01T09%3A56%3A50Z%2F300%2Fhost%2F425722c49dbc475ca8632971988507006fb85460567c1cf002b557a69e894cd0">
-</figure>
+<img src="https://ss2.baidu.com/6ON1bjeh1BF3odCf/it/u=2095491990,3815431535&fm=15&gp=0.jpg" width="50%" ><img src="https://userblink.csdnimg.cn/20210601/qq_52549196/pic/df47296548e1b37ecc93ab16cb1d2561-0.png?x-oss-process=image/resize,w_375" width="50%" >
 
 
 
