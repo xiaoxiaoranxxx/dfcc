@@ -1,0 +1,8 @@
+
+file_get_contents("php://input");
+
+simplexml_load_string();
+
+apt-get install google-chrome-stable
+
+

