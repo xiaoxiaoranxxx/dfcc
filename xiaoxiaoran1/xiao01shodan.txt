@@ -1,7 +1,3 @@
-
-API Key 	nz9KEud2zGamiluEEiOGP9TUDbCu28Oy
-
-
   240  redis-cli 
   241  redis-server --requirepass root > redis.log &
   242  redis-cli 
