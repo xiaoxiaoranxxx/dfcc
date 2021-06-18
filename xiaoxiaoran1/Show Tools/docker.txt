@@ -1,0 +1,11 @@
+
+	https://www.cnblogs.com/zhou-zr/p/14698345.html
+	
+	https://www.bilibili.com/video/BV1Xi4y137NY?from=search&seid=5702118872873024790
+
+	docker run -i -t 85d6f5766821  /bin/bash
+	docker pa -a
+	docker exec -it  7ba0281c97c2 /bin/bash
+	
+	
+	
