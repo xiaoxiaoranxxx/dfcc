@@ -1,11 +1,132 @@
 
 	https://www.cnblogs.com/zhou-zr/p/14698345.html
 	
-	https://www.bilibili.com/video/BV1Xi4y137NY?from=search&seid=5702118872873024790
+	https://www.bilibili.com/video/BV1og4y1q7M4?from=search&seid=7049871918556279556
 
+	https://docs.docker.com/get-started/overview/
+	
 	docker run -i -t 85d6f5766821  /bin/bash
 	docker pa -a
+	docker start 7ba0281c97c2
 	docker exec -it  7ba0281c97c2 /bin/bash
 	
 	
+	systemctl start docker
+	docker version
+	docker run hello-world
+	docker images --help
+	docker search mysql --filter=STARS=3000
+	docker pull mysql  = docker pull docker.io/library/mysql:latest
+		docker pull mysql:5.7
+	docker rmi -f id... 删镜像
 	
+	docker pull centos
+	docker run [-xx] image
+		--name="xiao"
+		-d  后台
+		-it 交互
+		-p 端口
+	docker run -it centos /bin/bash
+	docker ps
+		-a 所有
+	ctrl + P + Q 退出不停值
+	docker rm id... 删容器
+	
+	docker start id...
+	docker restart id...
+	docker stop id...
+	docker kill id...
+	
+	docker logs -tf --tail 100  078fdfa5283a  查看日志
+	docker top id.. 
+	docker top 7ba0281c97c2   容器中的进程
+	
+	docker inspect id 查看容器元数据
+	
+	docker exec -it id bashshell 进入正在运行的容器
+	docker attach id  不开启一个新的终端,正在执行
+	
+	docker cp id:/home/test.txt  /home  从容器到主机
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+                          ########                  #
+                      #################            #
+                   ######################         #
+                  #########################      #
+                ############################
+               ##############################
+               ###############################
+              ###############################
+              ##############################
+                              #    ########   #
+                 ##        ###        ####   ##
+                                      ###   ###
+                                    ####   ###
+               ####          ##########   ####
+               #######################   ####
+                 ####################   ####
+                  ##################  ####
+                    ############      ##
+                       ########        ###
+                      #########        #####
+                    ############      ######
+                   ########      #########
+                     #####       ########
+                       ###       #########
+                      ######    ############
+                     #######################
+                     #   #   ###  #   #   ##
+                     ########################
+                      ##     ##   ##     ##
+					  
+					  
+					  
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
