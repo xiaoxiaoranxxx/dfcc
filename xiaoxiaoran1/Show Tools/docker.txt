@@ -1,5 +1,4 @@
 
-	https://www.cnblogs.com/zhou-zr/p/14698345.html
 	
 	https://www.bilibili.com/video/BV1og4y1q7M4?from=search&seid=7049871918556279556
 
@@ -23,7 +22,7 @@
 	docker pull centos
 	docker run [-xx] image
 		--name="xiao"
-		-d  后台
+		-d  后台运行
 		-it 交互
 		-p 端口
 	docker run -it centos /bin/bash
@@ -43,24 +42,48 @@
 	
 	docker inspect id 查看容器元数据
 	
-	docker exec -it id bashshell 进入正在运行的容器
-	docker attach id  不开启一个新的终端,正在执行
+	docker exec -it id /bin/bash 进入正在运行的容器
+	docker attach id  不开启一个新的终端,进入正在执行的终端
 	
 	docker cp id:/home/test.txt  /home  从容器到主机
 	
+	docker stats 查看cpu的状态
+	
+	portainer 可视化工具
+	
+	联合文件系统	分层	y
 	
 	
 	
+	nginx
+		docker search nginx
+		docker pull nginx
+		docker run -d --name nginx01 -p 3344:80 nginx
+		docker ps
+		curl 127.0.0.1:3344
+	tomcat
+		docker run -it --rm tomcat:9.0   //测试
+		docker run -d -p 3355:8080 --name tomcat01  tomcat
+		docker exec -it tomcat01 tomcat /bin/bash  //只保证最小运行环境
+	ES+kibana
+		docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch
+		
+	docker commit -m="xx" -a="xiao" id  提交副本 类似快照
+		
+容器数据卷   //数据持久化,数据共享 -> 同步操作,做文件映射
+	docker run -it -v /home/xiaoxiaoran:/home/centos_xiaoxiaoran  centos /bin/bash
+		me->xiaoxiaoran == you->centos_xiaoxiaoran
+			docker inspect 012fee9be225
+				 "Mounts": 
+					[{
+						"Type": "bind",
+						"Source": "/home/xiaoxiaoran",
+						"Destination": "/home/centos_xiaoxiaoran",
+						"Mode": "",
+						"RW": true,
+						"Propagation": "rprivate"
+					}],
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
