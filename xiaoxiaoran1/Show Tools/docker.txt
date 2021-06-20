@@ -4,6 +4,7 @@
 
 	https://docs.docker.com/get-started/overview/
 	
+	docker pull kalilinux/kali    
 	docker run -i -t 85d6f5766821  /bin/bash
 	docker pa -a
 	docker start 7ba0281c97c2
@@ -84,6 +85,33 @@
 						"Propagation": "rprivate"
 					}],
 
+	mysql 挂载
+		docker run -d -p 3310:3306 -v /home/mysql/conf:/etc/mysql/conf.d -v /home/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql01 mysql:5.7
+			ro 只读 rw读写
+			
+	docker volume ls
+	
+	docker run -d --name -v xiaoxiaoran-nginx:/etc/nginx nginx   具名挂载
+		/var/lib/docker/volume/xiaoxiaoran/_data
+		
+	多容器同步  --volume-from  继承
+	
+DockerFile
+
+	#指令大写
+	FROM 基础镜像
+	MAINTAINER 作者
+	RUN 运行命令
+	ADD 添加
+	WORKDIR	工作目录
+	VOLUME 挂载
+	EXPOSE 开放端口
+	RUN  开始
+	CMD  
+	ENTRYPOINT 追加命令
+	ONBUILD  继承
+	CP   拷贝
+	ENV 环境变量
 	
 	
 	
@@ -143,7 +171,7 @@
 	
 	
 
-	
+
 	
 	
 	
