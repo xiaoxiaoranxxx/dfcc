@@ -144,8 +144,42 @@ DockerFile
 		ENV CATALINA_BASH /usr/local/apache-tomcat-9.0.22
 		ENV PATH $PATH;$JAVA_HOME/bin;$CATALINA_HOME/lib;$CATALINA_HOME/bin
 		EXPOSE 8080
-		CMD /usr/local/apache-tomcat-9.0.22/bin/startup.sh && tail -F /url/local/apache-tomcat-9.0.22/bin/logs/catalina.out
-	docker build -t mytomact . 
+		CMD /usr/local/apache-tomcat-9.0.22/bin/startup.sh && tail -F /usr/local/apache-tomcat-9.0.22/bin/logs/catalina.out
+	docker build -t mytomact .  
+	
+	docker login -u xiaoxiaoran 
+	docker push xiaoxiaoran:tomcat:1.1 
+	
+docker网络
+	
+	主机
+	docker0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default 
+    link/ether 02:42:e9:f4:98:03 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::42:e9ff:fef4:9803/64 scope link 
+       valid_lft forever preferred_lft forever  
+	7: vethb7a6d3d@if6: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master docker0 state UP group default 
+    link/ether be:49:2d:bb:2a:72 brd ff:ff:ff:ff:ff:ff link-netnsid 1
+    inet6 fe80::bc49:2dff:febb:2a72/64 scope link 
+       valid_lft forever preferred_lft forever
+
+	kali
+	6: eth0@if7: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default 
+		link/ether 02:42:ac:11:00:03 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+		inet 172.17.0.3/16 brd 172.17.255.255 scope global eth0
+		   valid_lft forever preferred_lft forever
+
+	
+	kali -> 6: eth0@if7 -> 7: vethb7a6d3d@if6 -> docker0(路由器)
+
+
+	桥接   evth-pair虚拟设备接口
+	
+
+		
+
+	
 	
 	
 	
@@ -168,23 +202,6 @@ DockerFile
                  ####################   ####
                   ##################  ####
                     ############      ##
-                       ########        ###
-                      #########        #####
-                    ############      ######
-                   ########      #########
-                     #####       ########
-                       ###       #########
-                      ######    ############
-                     #######################
-                     #   #   ###  #   #   ##
-                     ########################
-                      ##     ##   ##     ##
-					  
-					  
-					  
-
-
-	
 	
 	
 	
