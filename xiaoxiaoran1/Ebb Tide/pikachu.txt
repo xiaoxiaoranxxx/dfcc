@@ -1,0 +1,79 @@
+
+	https://www.freesion.com/article/3203630825/
+	
+	https://blog.csdn.net/brotheryy/article/details/106923848
+
+1、暴力破解
+	1.1 基于表单的暴力破解
+		burpsuite
+	1.2 验证码绕过(on server)
+		burpsuite repeater
+	1.3 验证码绕过(on client)
+		burpsuite repeater
+	1.4 验证码绕过(token 防爆破)
+		burpsuite 递归搜索
+			
+2、Cross-Site Scripting-XSS
+	2.1 反射型(get)
+		<script>alert(1)</script>
+	2.2 反射型(post)
+		<script>alert(1)</script>
+	2.3 存储型xss
+		<script>alert(1)</script>
+	2.4 DOM型xss
+		<a href="<script>alert(1)</script>" class="link-instanted">what do you see?</a>
+			' onclick="alert(1)" >
+				<a href="" onclick="alert(1)" class="link-instanted">'&gt;what do you see?</a>
+	2.5 DOM型xss-x
+		' onclick="alert(1)" >
+	2.6 XSS之盲打
+		<script>alert(1)</script>
+	2.7 XSS之过滤
+		<ScriPT>alert(1)</ScriPT>
+	2.8 xss之htmlspecialchars
+		'onclick='alert(1)'  
+	2.9 xss之href输出
+		javascript:alert(1)
+	2.10 xss之js输出
+		'</script><script>alert(1)</script>
+		
+3、CSRF
+	3.1 CSRF(get)
+		get
+	3.2 CSRF(post)
+		伪造网站, post.html
+	3.3 CSRF(token)
+	
+4、Sql Inject(SQL注入)
+	4.1 数字型注入(post)
+	4.2 字符型注入(get)
+	4.3 搜索型注入
+	4.4 xx型注入(这是？？？？)
+	4.5 insert/update注入
+	4.6 delete注入
+	4.7 http头注入
+	4.8 基于boolian的盲注
+	4.9 基于time的盲注
+	4.10 宽字节注入
+5、RCE
+	5.1 exec "ping"
+	5.2 exec "eval"
+6、file include
+	6.1 file include(local)
+	6.2 file include(remote)
+7、unsafe filedownload（不安全的文件下载）
+8、unsafe upfileupload（文件上传）
+	8.1 client check(客户端check)
+	8.2 client check(Mime type)
+	8.3 getimagesize
+9、Over Permission
+	9.1 水平越权
+	9.2 垂直越权
+10、目录遍历
+11、敏感信息泄漏
+12、PHP反序列化
+13、XXE
+14、URL重定向
+15、SSRF
+	15.1 ssrf(curl)
+	15.2 ssrf(file_get_content)
