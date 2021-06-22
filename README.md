@@ -15,7 +15,7 @@
 
 # Directory Structure -->DFCC
 
-KALI -->Forever belief
+Forever belief
 ========
 
 Mature play not free and easy <br/>
