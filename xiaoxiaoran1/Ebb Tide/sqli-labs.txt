@@ -162,7 +162,101 @@ Page-2 (Advanced Injections)
 		$sql="SELECT * FROM users WHERE id=$id LIMIT 0,1";
 		
 		
+	less-36
+		for ($i=0; $i < strlen($string); $i++)
+			$hex .= dechex(ord($string[$i]));
+		$sql="SELECT * FROM users WHERE id='$id' LIMIT 0,1";
+	
+	less-37
+		$uname = mysql_real_escape_string($uname1);
+        $passwd= mysql_real_escape_string($passwd1);
 		
+Page-3 (Stacked Injections)
+	less-38
+		$sql="SELECT * FROM users WHERE id='$id' LIMIT 0,1";
+		
+	less-39
+		$sql="SELECT * FROM users WHERE id=$id LIMIT 0,1";
+		
+	less-40
+		$sql="SELECT * FROM users WHERE id=('$id') LIMIT 0,1";
+		
+	less-41
+		$sql="SELECT * FROM users WHERE id=$id LIMIT 0,1";
+		
+	less-42
+		$username = mysqli_real_escape_string($con1, $_POST["login_user"]);
+		$password = $_POST["login_password"];
+		$sql = "SELECT * FROM users WHERE username='$username' and password='$password'";
+		
+	less-43
+		$username = mysqli_real_escape_string($con1, $_POST["login_user"]);
+		$password = $_POST["login_password"];
+		$sql = "SELECT * FROM users WHERE username=('$username') and password=('$password')";
+		
+	less-44
+		$username = mysqli_real_escape_string($con1, $_POST["login_user"]);
+		$password = $_POST["login_password"];
+		$sql = "SELECT * FROM users WHERE username='$username' and password='$password'";
+		
+	less-45
+		$username = mysqli_real_escape_string($con1, $_POST["login_user"]);
+		$password = $_POST["login_password"];
+		$sql = "SELECT * FROM users WHERE username=('$username') and password=('$password')";
+		
+	less-46
+		$sql = "SELECT * FROM users ORDER BY $id";
+		
+	less-47
+		$sql = "SELECT * FROM users ORDER BY $id";
+		
+	less-48
+		$sql = "SELECT * FROM users ORDER BY $id";
+		
+	less-49
+		$sql = "SELECT * FROM users ORDER BY $id";
+		
+	less-50
+		$sql = "SELECT * FROM users ORDER BY $id";
+		
+	less-51
+		$sql = "SELECT * FROM users ORDER BY $id";
+		
+	less-52
+		$sql = "SELECT * FROM users ORDER BY $id";
+		
+	less-53
+		$sql = "SELECT * FROM users ORDER BY $id";
+	
+Page-4 (Challenges Injections)
+	less-54
+		$sql="SELECT * FROM security.users WHERE id='$id' LIMIT 0,1";
+		
+	less-55
+		$sql="SELECT * FROM security.users WHERE id=($id) LIMIT 0,1";
+		
+	less-56
+		$sql="SELECT * FROM security.users WHERE id=('$id') LIMIT 0,1";
+		
+	less-57
+		$sql = "SELECT * FROM security.users WHERE id=$id LIMIT 0,1";
+		
+	less-58
+		$sql="SELECT * FROM security.users WHERE id='$id' LIMIT 0,1";
+		
+	less-59
+		$sql="SELECT * FROM security.users WHERE id=$id LIMIT 0,1";
+		
+	less-60
+		$id = '("'.$id.'")';
+		$sql="SELECT * FROM security.users WHERE id=$id LIMIT 0,1";
+		
+	less-61
+	less-62
+	less-63
+	less-64
+	less-65
+
 		
 		
 		
