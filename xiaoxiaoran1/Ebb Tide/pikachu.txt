@@ -92,9 +92,11 @@
 	5.1 exec "ping"
 		127.0.0.1|ifconfig
 		127.0.0.1|whoami
-		
+			$result.=shell_exec('ping -c 4 '.$ip);
+			
 	5.2 exec "eval"
 		phpinfo();
+			if(@!eval($_POST['txt'])){}
 		
 6、file include
 	6.1 file include(local)

