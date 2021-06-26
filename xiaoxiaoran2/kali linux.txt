@@ -1,5 +1,6 @@
 
-
+	https://www.fujieace.com/linux/man/china-man.html
+	
 sudo apt install php
 sudo apt-get update 
 sudo apt-get upgrade
@@ -7,8 +8,10 @@ sudo apt-get upgrade
 sudo service apache2 start
 
 
-
-
+	free -h 
+	htop
+	cat /proc/meminfo
+	
 
 
 
