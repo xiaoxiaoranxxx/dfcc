@@ -2,7 +2,7 @@
 
 
 
-# Welcome to Xiao Xiaoran Penetration journey
+# Welcome to Xiao Xiaoran's Penetration journey
 
 
 <img src="https://ss2.baidu.com/6ON1bjeh1BF3odCf/it/u=3356192396,2960287268&fm=15&gp=0.jpg" width="100%" height="100%" >
@@ -77,4 +77,7 @@ And you'll ride the waves<br/>
 
 
 
-*学习的技术来自于-->红客,抖音,b站,腾讯课堂,韩立刚,老男孩教育,学神it,心东,千峰教育,传智播客,小迪,51CTO,遇见狂神说* 
+*xiaoxiaoran学习的技术来自于*<br>
+*-->红客,抖音,b站,腾讯课堂,韩立刚*<br>
+*-->老男孩教育,学神it,心东,千峰教育*<br>
+*-->传智播客,小迪,51CTO,遇见狂神说* <br>
