@@ -84,6 +84,17 @@ echo "this-->$mem_p%" # 内存占用
 echo "2*34.33"|bc
 echo "print 22.43/2.214"|python
 
+url=www.xiaoxiaoran.com.cn
+echo ${url}
+echo ${url%.*}  #www.xiaoxiaoran.com
+echo ${url%%.*} #www
+echo ${url#*.xiao} #xiaoran.com.cn
+echo ${url:0:5} #www.x
+echo ${url:5:5} #iaoxi
+
+
+
+
 
 
 
