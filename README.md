@@ -19,7 +19,6 @@
 + Ebb Tide
 + Evolutionary Paths
 + Shell
-+ Show Tools
 + Trojan
 
 # xiaoxiaoran2
@@ -92,3 +91,4 @@ And you'll ride the waves<br/>
 *-->红客,抖音,b站,腾讯课堂,韩立刚*<br>
 *-->老男孩教育,学神it,心东,千峰教育*<br>
 *-->传智播客,小迪,51CTO,遇见狂神说* <br>
+*-->百度,Google,CSDN,付杰博客* <br>
