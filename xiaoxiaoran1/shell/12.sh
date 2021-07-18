@@ -70,10 +70,24 @@ array(){
 	echo "all $*"
 	local newarray=(`echo $*`)
 	local i
-	for ((i=0;i<$#;i++)
+	for ((i=0;i<$#;i++))
 	do 
 		outarray[$i]=$[ ${newarray[$i]} * 3 ]
 	done
+	echo "${outarray[*]}"
 }
 
-array ${num[*]}
+result=`array ${num[*]}`
+echo ${result[*]}
+
+############
+for i in {A..G}
+do
+	echo -n $i
+	for j in {1..9}
+	do
+		echo -n $j
+	done
+	echo
+done
+
