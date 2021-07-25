@@ -37,4 +37,9 @@ awk -F "[ :\t]" '{print $1}' /etc/passwd
 awk -F ":" '{printf "%-15d %-10s %-25s\n" ,$1,$2,$3}' /etc/passwd
 awk -F ":" '{ if(){$1>1} print $1 else{} }' /etc/passwd
 awk -F "[ :]+" '{print NF}' 1.txt
+awk -F ":" '{shell[$NF]++} END{for(i in shell){print i,shell[i]} }' /etc/passwd
+ss -an|grep '80' | awk '{status[$2]++} END{for(i in status){print i,status[i]}}'
+ss -an|grep ':80' | awk -F ":" '!/LISTEN/{ips[$(NF-1)]++} END{for(i in ips){print i,ips[i]}}' |sort -k2 -rn|head -5
+echo "unix script" | awk "gsub(/unix/,\"xiaoxiaoran\")"
+df -h| awk '{ if(int($5)>10){print $6":"$5}}'
 
