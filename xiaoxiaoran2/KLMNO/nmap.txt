@@ -1,0 +1,47 @@
+
+
+
+
+sudo nmap -p 22 39.107.221.203                                                 
+	22/tcp open  ssh
+
+sudo nmap -p 22 39.107.221.203 -sS -sV
+	22/tcp open  ssh     OpenSSH 7.4 (protocol 2.0)
+
+sudo nmap  39.107.221.203  -O  
+	Running: Microsoft Windows XP
+
+sudo nmap  39.107.221.203  -A
+	22/tcp   open  ssh     OpenSSH 7.4 (protocol 2.0)
+	| ssh-hostkey: 
+	|   2048 4e:5f:11:0f:69:93:7d:62:91:e6:f9:6e:08:2f:49:aa (RSA)
+	|   256 81:b1:33:2d:e1:09:1a:fb:60:1e:68:df:39:38:39:ac (ECDSA)
+	|_  256 4b:4b:63:49:8b:2f:f5:47:95:f6:be:54:97:d6:82:ea (ED25519)
+	80/tcp   open  http    Apache httpd 2.4.39 ((Unix) OpenSSL/1.1.1b)
+	| http-methods: 
+	|_  Potentially risky methods: TRACE
+	|_http-server-header: Apache/2.4.39 (Unix) OpenSSL/1.1.1b
+	|_http-title: xiaoxiaoran
+	9080/tcp open  glrpc?
+	| fingerprint-strings: 
+	|   FourOhFourRequest, GetRequest, HTTPOptions, RTSPRequest, SIPOptions: 
+	|     HTTP/1.1 404 Not Found
+	|     Content-Type: text/html;charset=utf-8
+	|     Connection: keep-alive
+	|     Server: xpserver/3.5.15
+	|     Content-Length: 111
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
