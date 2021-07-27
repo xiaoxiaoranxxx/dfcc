@@ -1,7 +1,4 @@
 
-
-
-
 sudo nmap -p 22 39.107.221.203                                                 
 	22/tcp open  ssh
 
@@ -31,17 +28,20 @@ sudo nmap  39.107.221.203  -A
 	|     Server: xpserver/3.5.15
 	|     Content-Length: 111
 
-  
+sudo nmap  39.107.221.203  -A -sS -oN ./1.txt
 
+sudo nmap  39.107.221.203  --script=./home/vulscan.nse -oN 2.txt
 
+sudo nmap 8.8.8.8 -n -T3 -sU -A
 
+sudo nmap  -F 39.156.69.79 -D1.1.1.1,2.2.2.2
 
+sudo nmap -iflist
 
+sudo nmap  -F 39.156.69.79 -sT -sV
 
+sudo nmap  -F 39.156.69.79 -sT -sV --spoof-mac 02:42:AC:11:00:02
 
+sudo nmap --script ipidseq -iR 1000 -oN xiaiii.txt
 
-
-
-
-
-
+sudo nmap -Pn -sI ip:port 1.1.1.1
