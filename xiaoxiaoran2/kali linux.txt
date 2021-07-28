@@ -40,6 +40,10 @@ sudo service apache2 start
 	找出消耗内存最多的前 10 名进程 ps -auxf | sort -nr -k 4 | head -10 
 	找出使用 CPU 最多的前 10 名进程 ps -auxf | sort -nr -k 3 | head -10
 
+	netstat -anp |grep 端口
+	kill -9 PID   //关闭linux系统端口方法
+	
+	
 	pstree 命令列出当前的进程，以及它们的树状结构。
 	
 	top 命令用来显示系统当前的进程状况。
