@@ -8,6 +8,7 @@ sudo apt-get upgrade
 sudo service apache2 start
 	
 	
+	
 	Ctrl + u 清除剪切光标之前的内容
 	Ctrl + k 剪切清除光标之后的内容
 	Ctrl + y 粘贴刚才所删除的字符
