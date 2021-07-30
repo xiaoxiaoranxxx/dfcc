@@ -62,7 +62,7 @@ server 目标ip、某个网段
 
 service 指定服务/协议名称
 
-OPT 某些模块支持附加输入
+OPT 某些模块支持附加输入  
 
 hydra支持破解的服务/协议
 
@@ -116,7 +116,6 @@ hydra -l admin -P pass.txt http-proxy://10.36.16.18
 hydra -L user.txt -p secret 10.36.16.18 imap PLAIN
 
 hydra -C defaults.txt -6 imap://[fe80::2c:31ff:fe12:ac11]:143/PLAIN
-
 
 
 
