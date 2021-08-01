@@ -183,6 +183,9 @@
 	 运行级别 3 完全的多用户(multiuser)状态 (有 NFS)，登陆后进入控制台命令行模式
 	 运行级别 5 X11 控制台 (xdm、gdm、kdm)，登陆后进入图形 GUI 模式
 	
+	yum install -y xterm
+	um install xorg-x11-apps
+	xclock
 	
 	
 	
