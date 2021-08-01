@@ -1,7 +1,9 @@
 
 	
 	https://www.bilibili.com/video/BV1og4y1q7M4?from=search&seid=7049871918556279556
-
+	
+	https://zhuanlan.zhihu.com/p/54147784
+	
 	https://docs.docker.com/get-started/overview/
 	
 	docker pull kalilinux/kali    

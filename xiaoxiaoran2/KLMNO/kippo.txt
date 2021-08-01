@@ -1,0 +1,67 @@
+kippo概述：kippo是一个中等交互的SSH蜜罐
+
+22/tcp   open   ssh            OpenSSH 7.4 (protocol 2.0)
+| ssh-hostkey: 2048 e8:b8:b2:71:04:43:ce:90:ad:07:a7:44:e4:6b:52:78 (RSA)
+|_256 5e:e4:23:59:4e:cd:9f:88:f0:bf:52:ef:b6:02:bb:05 (ECDSA)
+
+2222/tcp open   ssh            OpenSSH 5.1p1 Debian 5 (protocol 2.0)
+| ssh-hostkey: 1024 01:9f:c9:e2:75:8c:51:01:97:eb:29:ba:4d:11:43:3e (DSA)
+|_2048 2c:44:11:3e:9f:1b:6a:9b:a5:20:1f:57:5f:c2:31:3d (RSA)
+
+
+ yum install python-zope-interface python-pyasn1 -y
+ yum install -y python-twisted*
+ yum -y install python-devel mysql-devel 
+ yum install -y python2-paramiko 
+ yum -y install epel-release
+ yum -y install python-pip
+ 
+ pip install twisted==15.2.0
+ pip install mysql-python
+ pip install  pycrypto
+ 
+  useradd -d /kippo kippo
+   git clone https://github.com/desaster/kippo.git
+  cp -r kippo/ /kippo/
+chown -R kippo:kippo /kippo
+  yum install mariadb-server mariadb -y
+  systemctl start mariadb
+   mysql
+  MariaDB [(none)]> create database kippo;
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON kippo.* TO kippo@localhost IDENTIFIED BY '123456';
+  mysql -u kippo -p123456
+  mysql -ukippo -p -Dkippo < /kippo/kippo/doc/sql/mysql.sql
+  
+ cd /kippo/kippo/
+ cp kippo.cfg.dist kippo.cfg
+ vim kippo.cfg
+改：
+163 #[database_mysql]
+164 #host = localhost
+165 #database = kippo
+166 #username = kippo
+167 #password = secret
+168 #port = 3306
+为：
+[database_mysql]
+host = localhost
+database = kippo
+username = kippo
+password = 123456
+port = 3306
+  
+   su - kippo
+   ./start.sh
+  
+netstat -antup | grep :22
+
+ cat data/userdb.txt 用另一台机器SSH登录蜜罐的2222端口(用户名和密码就是上面userdb.txt中的)
+ 
+ 登录以及登录后的操作日志，在log文件夹下面的kippo.log里面
+	tail -f /kippo/kippo/log/kippo.log
+	
+回放攻击者的操作过程：
+	/kippo/kippo/utils/playlog.py /kippo/kippo/log/tty/20190608-161126-4574.log
+
+
+设置端口转发（安装rinetd） ...
