@@ -32,5 +32,13 @@
 	project options -> sessions -> macros -> add ->  ctrl... -> test macro 
 		-> sessions -> session handling rules -> add -> rule actions -> run a macro 
 			->scope -> url scope
-			
+		
+当长度一样时
+	filter -> code: 'bugku10000' -> negative search
+
+自动生成字典
+	intruder -> payload -> payload type -> brute forcer
 	
+
+
+		
