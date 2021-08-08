@@ -87,7 +87,7 @@ And you'll ride the waves<br/>
 
 
 *xiaoxiaoran学习的技术来自于*<br>
-*-->红客,抖音,b站,腾讯课堂,韩立刚*<br>
+*-->红客,抖音,b站,腾讯课堂,韩立刚,橘子女侠*<br>
 *-->老男孩教育,学神it,心东,千峰教育*<br>
 *-->传智播客,小迪,51CTO,遇见狂神说* <br>
 *-->百度,aol,CSDN,付杰博客,DeelMind* <br>
