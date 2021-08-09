@@ -3,7 +3,7 @@ sudo netdiscover -i eth0 -r 192.168.100.0/24
 
 目标主机IP：192.168.100.152
 
-sudo masscan --rate=10000 --ports 0-65535 192.168.100.148
+sudo masscan --rate=10000 --ports 0-65535 192.168.100.152
 	Discovered open port 22/tcp on 192.168.100.152                                 
 	Discovered open port 3000/tcp on 192.168.100.152               
 
