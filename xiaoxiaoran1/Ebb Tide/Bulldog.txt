@@ -9,6 +9,8 @@ vim /etc/network/interfaces ，修改网卡名称成步骤查询的结果，保�
 	iface ens33 inet dhcp
 reboot
 
+dhclient
+
 目标主机IP：192.168.100.149
 
 masscan --rate=10000 --ports 0-65535 192.168.100.149
