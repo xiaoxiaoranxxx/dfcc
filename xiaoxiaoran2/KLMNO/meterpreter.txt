@@ -1,0 +1,164 @@
+Meterpreter是一种先进的，可动态扩展的有效负载，它使用内存中的 DLL注入阶段，并在运行时通过网络扩展。它通过stager套接字进行通信并提供全面的客户端Ruby API。
+
+
+background 会话发送到后台并返回到msf提示符
+
+与系统上的命令相同
+  cat         cd          checksum    chmod       cp       del         dir         download    edit        getlwd      getwd      
+  lcd         lls         lpwd        ls          mkdir       mv          pwd         rm          rmdir      search      upload    
+
+clearev   命令将清除Windows系统上的应用程序，系统和安全日志。
+
+download  download /etc/passwd /tmp  提供Windows路径时使用双斜线。
+
+edit  命令打开位于目标主机上的文件。它使用'vim'，所有编辑器的命令都可用。 edit /home/1.txt
+
+execute 在目标上运行一个命令。  execute -f cmd.exe -i -H
+
+getuid  显示Meterpreter服务器在主机上运行的用户。
+
+hashdump   发布模块将转储SAM数据库的内容。   run post/windows/gather/hashdump 
+
+migrate   发布模块，您可以迁移到受害者的另一个进程。  run post/windows/manage/migrate 
+
+ps  命令显示目标上正在运行的进程的列表。
+
+resource  命令将执行位于文本文件内的Meterpreter指令。 每行包含一个条目，“资源”将按顺序执行每行。echo 'ls \n pwd '>1.txt && resource 1.txt
+
+search  命令提供了一种在目标主机上查找特定文件的方法  search -f xiao
+
+shell   命令将为您提供目标系统上的标准shell。
+
+upload   与“download”命令一样，您需要使用上传命令使用双斜线。 upload /tmp/user /home
+
+webcam_list   从Meterpreter外壳运行时，'webcam_list'命令将显示目标主机上当前可用的网络摄像头。
+webcam_snap   从目标系统上已连接的网络摄像头抓取图片，并将其保存为光盘上的JPEG图像。默认情况下，保存位置是具有随机文件名的本地当前工作目录。
+
+
+
+Core Commands
+=============
+
+    Command                   Description
+    -------                   -----------
+    ?                         Help menu
+    background                Backgrounds the current session
+    bg                        Alias for background
+    bgkill                    Kills a background meterpreter script
+    bglist                    Lists running background scripts
+    bgrun                     Executes a meterpreter script as a background thread
+    channel                   Displays information or control active channels
+    close                     Closes a channel
+    detach                    Detach the meterpreter session (for http/https)
+    disable_unicode_encoding  Disables encoding of unicode strings
+    enable_unicode_encoding   Enables encoding of unicode strings
+    exit                      Terminate the meterpreter session
+    guid                      Get the session GUID
+    help                      Help menu
+    info                      Displays information about a Post module
+    irb                       Open an interactive Ruby shell on the current session
+    load                      Load one or more meterpreter extensions
+    machine_id                Get the MSF ID of the machine attached to the session
+    pry                       Open the Pry debugger on the current session
+    quit                      Terminate the meterpreter session
+    read                      Reads data from a channel
+    resource                  Run the commands stored in a file
+    run                       Executes a meterpreter script or Post module
+    secure                    (Re)Negotiate TLV packet encryption on the session
+    sessions                  Quickly switch to another session
+    use                       Deprecated alias for "load"
+    uuid                      Get the UUID for the current session
+    write                     Writes data to a channel
+
+
+Stdapi: File system Commands
+============================
+
+    Command       Description
+    -------       -----------
+    cat           Read the contents of a file to the screen
+    cd            Change directory
+    checksum      Retrieve the checksum of a file
+    chmod         Change the permissions of a file
+    cp            Copy source to destination
+    del           Delete the specified file
+    dir           List files (alias for ls)
+    download      Download a file or directory
+    edit          Edit a file
+    getlwd        Print local working directory
+    getwd         Print working directory
+    lcd           Change local working directory
+    lls           List local files
+    lpwd          Print local working directory
+    ls            List files
+    mkdir         Make directory
+    mv            Move source to destination
+    pwd           Print working directory
+    rm            Delete the specified file
+    rmdir         Remove directory
+    search        Search for files
+    upload        Upload a file or directory
+
+
+Stdapi: Networking Commands
+===========================
+
+    Command       Description
+    -------       -----------
+    arp           Display the host ARP cache
+    getproxy      Display the current proxy configuration
+    ifconfig      Display interfaces
+    ipconfig      Display interfaces
+    netstat       Display the network connections
+    portfwd       Forward a local port to a remote service
+    resolve       Resolve a set of host names on the target
+    route         View and modify the routing table
+
+
+Stdapi: System Commands
+=======================
+
+    Command       Description
+    -------       -----------
+    execute       Execute a command
+    getenv        Get one or more environment variable values
+    getpid        Get the current process identifier
+    getuid        Get the user that the server is running as
+    kill          Terminate a process
+    localtime     Displays the target system local date and time
+    pgrep         Filter processes by name
+    pkill         Terminate processes by name
+    ps            List running processes
+    shell         Drop into a system command shell
+    suspend       Suspends or resumes a list of processes
+    sysinfo       Gets information about the remote system, such as OS
+
+
+Stdapi: Webcam Commands
+=======================
+
+    Command        Description
+    -------        -----------
+    webcam_chat    Start a video chat
+    webcam_list    List webcams
+    webcam_snap    Take a snapshot from the specified webcam
+    webcam_stream  Play a video stream from the specified webcam
+
+
+Stdapi: Mic Commands
+====================
+
+    Command       Description
+    -------       -----------
+    listen        listen to a saved audio recording via audio player
+    mic_list      list all microphone interfaces
+    mic_start     start capturing an audio stream from the target mic
+    mic_stop      stop capturing audio
+
+
+Stdapi: Audio Output Commands
+=============================
+
+    Command       Description
+    -------       -----------
+    play          play a waveform audio file (.wav) on the target system
