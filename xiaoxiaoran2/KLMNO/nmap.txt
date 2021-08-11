@@ -46,6 +46,38 @@ sudo nmap --script ipidseq -iR 1000 -oN xiaiii.txt
 
 sudo nmap -Pn -sI ip:port 1.1.1.1
 
+
+Nmap突破防火墙扫描 常见思路
+1、碎片扫描
+nmap -f www.fujieace.com
+
+nmap -mtu 8 www.fujieace.com
+ 
+
+2、诱饵扫描
+nmap -D RND:10 www.fujieace.com
+
+nmap –D decoy1,decoy2,decoy3 www.fujieace.com
+ 
+
+3、空闲扫描
+nmap -P0 -sI zombie www.fujieace.com
+ 
+
+4、随机数据长度
+nmap --data-length 25 www.fujieace.com
+
+nmap --randomize-hosts 103.17.40.69-100
+ 
+
+5、欺骗扫描
+nmap --sT -PN --spoof-mac aa:bb:cc:dd:ee:ff www.fujieace.com
+nmap --badsum www.fujieace.com
+nmap -g 80 -S www.baidu.com www.fujieace.com
+
+nmap -p80 --script http-methods --script-args http.useragent=”Mozilla 5” www.fujieace.com
+
+
 使用方法:nmap [Scan Type(s)] [Options] {target specification}
 目标说明:
 可以通过主机名，IP地址，网络等。
