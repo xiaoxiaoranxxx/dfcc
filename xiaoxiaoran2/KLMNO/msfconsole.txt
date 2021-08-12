@@ -3,6 +3,11 @@
 
 jobs -K 停止所有
 
+msfconsole -qr /home/xiaoxiaoran/shell/win.rc
+msfconsole -qr /home/xiaoxiaoran/shell/linux.rc
+
+systemctl restart postgresql  
+
 search name:mysql type:exploit
 search platform:mysql   ‍‍缩小查询范围‍‍
 
