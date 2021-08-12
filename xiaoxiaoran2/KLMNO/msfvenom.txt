@@ -89,4 +89,106 @@ set lhost 192.168.100.143
 exploit   
 
 
+
+
+
+-p，--payload <payload>        要使用的有效负载。指定一个' - '或stdin来使用自定义有效载荷
+
+--payload-options        列出有效载荷的标准选项
+
+-l，--list [type]                           列出模块类型。选项是：payloads, encoders, nops, all
+
+-n，--nopsled <length>            在有效负载上添加[length]大小的nopsled
+
+-f，--format <format>              输出格式（使用--help-formats作为列表）
+
+--help-formats              列出可用的格式
+
+-e，--encoder <encoder>        要使用的编码器
+
+-a，--arch <arch>                                 要使用的体系结构
+
+ --platform<platform>            有效载荷的平台
+
+--help-platforms                      列出可用的平台
+
+-s，--space <length>                           生成的有效负载的最大大小
+
+-encoder-space <length>      编码有效载荷的最大尺寸（默认为-s值）
+
+-b，--bad-chars <list>                        避免例子的字符列表：'\ x00 \ xff'
+
+-i，--iterations <count>                      对有效负载进行编码的次数
+
+-c，--add-code <path>                       指定要包含的其他win32 shellcode文件
+
+-x，--template <path>                        指定用作模板的自定义可执行文件
+
+-k，--keep                                            保留模板行为并将有效负载注入为新线程
+
+-o，--out <path>                                保存有效负载
+
+-v，--var-name <name>                        指定用于某些输出格式的自定义变量名称
+
+ --smallest                               最小生成最小可能的有效负载
+
+-h，--help                                            显示此帮助消息
 	
+	
+	
+以下是使用-platform选项时可以输入的可用平台列表。
+
+Cisco 或 cisco
+
+OSX 或 osx
+
+Solaris 或 solaris
+
+BSD 或 bsd
+
+OpenBSD 或 openbsd
+
+hardware
+
+Firefox 或 firefox
+
+BSDi 或 bsdi
+
+NetBSD 或 netbsd
+
+NodeJS 或 nodejs
+
+FreeBSD 或 freebsd
+
+Python 或 python
+
+AIX 或 aix
+
+JavaScript 或 javascript
+
+HPUX 或 hpux
+
+PHP 或 php
+
+Irix 或 irix
+
+Unix 或 unix
+
+Linux 或 linux
+
+Ruby 或 ruby
+
+Java 或 java
+
+Android 或 android
+
+Netware 或 netware
+
+Windows 或 windows
+
+mainframe
+
+multi
+
+
+

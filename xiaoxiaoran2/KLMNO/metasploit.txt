@@ -95,5 +95,66 @@ win7
 msf6 > connect 192.168.1.56 443
 nc -v 192.168.1.56 443
 
+	@Metapsloit 端口扫描@
+运行的Nmap扫描是一个SYN扫描
+nmap -v -sV 192.168.100.0/24 -oA xiaoxiao
+	
+通过eth0接口在整个子网上运行同一扫描，查找端口80。
+use auxiliary/scanner/portscan/syn
+set INTERFACE eth0
+set PORTS 80
+set RHOSTS 192.168.100.0/24
+set THREADS 50
+run
+
+加载'tcp'扫描器
+use auxiliary/scanner/portscan/tcp
+set RHOSTS 192.168.100.140
+run
+
+	@SMB版本扫描@
+确定在目标上运行的是哪个版本的Windows，以及哪个Samba版本在Linux主机上。
+use auxiliary/scanner/smb/smb_version
+set RHOSTS 192.168.100.140-141
+set THREADS 11
+run
+
+!!如果我们现在发出hosts命令，则新获取的信息将存储在Metasploit的数据库中。
+
+	@空闲扫描@
+Nmap的IPID空闲扫描允许我们在欺骗网络上另一主机的IP地址的同时扫描目标有点隐身。为了使这种类型的扫描能够正常工作，我们需要找到网络上空闲的主机，并使用增量或破碎小端增量的IPID序列。
+use auxiliary/scanner/ip/ipidseq
+set RHOSTS 192.168.100.0/24
+set THREADS 50
+run
+
+[*] 192.168.100.140's IPID sequence class: All zeros
+我们的扫描结果来看，我们有一些潜在的僵尸，我们可以用它来执行空闲扫描
+尝试使用192.168.100.140上的僵尸来扫描主机
+nmap -Pn -sI 192.168.100.140 192.168.100.2
+
+	@用Metasploit查找易受攻击的MSSQL系统@
+use auxiliary/scanner/mssql/mssql_ping
+set RHOSTS 192.168.100.140-141
+exploit
+
+	@FTP服务@
+use auxiliary/scanner/ftp/ftp_version 
+set RHOSTS 192.168.100.140
+exploit
+	
+	@用smb_login扫描访问@
+常见情况是拥有一个有效的用户名和密码组合，并且想知道你可以在哪里使用它。这是SMB登录检查扫描程序非常有用的地方，因为它将连接到一系列主机并确定用户名/密码组合是否可以访问目标。
+use auxiliary/scanner/smb/smb_login
+set RHOSTS 192.168.100.129
+set SMBUser xiao
+set SMBPass xiao
+set THREADS 50
+run
+
+@@
+
+
+@@@@@@@@@@@@@@@@@@@@@@@
 
 
