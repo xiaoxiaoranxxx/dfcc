@@ -187,6 +187,12 @@
 	yum install xorg-x11-apps
 	xclock
 	
-	
-	
+vim /etc/apt/sources.list
+deb http://mirrors.aliyun.com/kali kali-rolling main non-free contrib\n#deb-src http://mirrors.aliyun.com/kali kali-ro
+deb http://mirrors.aliyun.com/kali kali-rolling main non-free contrib\n#deb-src http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
+                                              
+apt install open-vm-tools-desktop
+
+
+
 	
