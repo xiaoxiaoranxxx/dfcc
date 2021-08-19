@@ -11,6 +11,8 @@ msfconsole -qr /home/xiaoxiaoran/shell/linux.rc
 resource 1.txt
 
 systemctl restart postgresql  
+msfdb init 
+db_status
 
 search name:mysql type:exploit
 search platform:mysql   ‍‍缩小查询范围‍‍
@@ -161,10 +163,7 @@ set SMBPass xiao
 set THREADS 50
 run
 
-@@
 
-
-@@@@@@@@@@@@@@@@@@@@@@@
 
 Core Commands
 =============

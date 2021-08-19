@@ -38,7 +38,8 @@
 
 自动生成字典
 	intruder -> payload -> payload type -> brute forcer
+
+宏,完成添加商品,使用优惠卡...
+	https://portswigger.net/web-security/logic-flaws/examples/lab-logic-flaws-infinite-money
 	
 
-
-		
