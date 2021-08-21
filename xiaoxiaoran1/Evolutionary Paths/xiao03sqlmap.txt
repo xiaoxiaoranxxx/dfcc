@@ -194,11 +194,6 @@ sqlmap -u http://114.67.246.176:17155/index.php --forms -D skctf -T fl4g -C "skc
 
 	
 	
-	
-	
-	
-	
-	
 
 
 
