@@ -61,6 +61,7 @@ python /root/md5.py 4d50db1dc6bd8d4f8dc1ca9b83bdc187 /root/1.txt
 md5.py
 
 # -*- coding:utf-8 -*-
+
 import hashlib
 import sys
 def get_cmd5(md5str):
@@ -81,7 +82,6 @@ for line in lines:
         break
     else:
         continue
-
 
 
 

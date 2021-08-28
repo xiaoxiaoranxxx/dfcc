@@ -1,8 +1,10 @@
-cewl利用爬虫来生成字典
+# cewl利用爬虫来生成字典
 
 Cewl是一个通过指定url及深度，使用爬虫技术，生成字典的一个工具。Cewl是通过ruby编写，通过爬取网站并提取独立的单词保存为字典，可以和John the Ripper等工具配合使用
 
-Cewl 示例
+##  Cewl 示例
+
+```sh
 默认输出
 cewl http://www.xyz.com/
 保存字典文件
@@ -27,8 +29,11 @@ cewl http://www.xyz.com/ --auth_type Digest --auth_uer admin --auth_pass passwor
 开启代理
 如果目标网站对IP设置了黑名单，或者想隐藏真实IP去获取信息，可以开启代理。
 cewl --proxy_host 127.0.0.1 --proxy_poxy 10808 -w dirct.txt -d 3 http://www.xyz.com/
+```
 
+## Cewl帮助
 
+```sh
 -h，--help：显示帮助。
 -k，-keep：保留下载的文件。
 -d ，-depth ：到蜘蛛的深度，默认为2。
@@ -53,8 +58,11 @@ cewl --proxy_host 127.0.0.1 --proxy_poxy 10808 -w dirct.txt -d 3 http://www.xyz.
 代理支持
 --proxy_host：代理主机。
 --proxy_port：代理端口，默认为8080
-。--proxy_username：代理的用户名（如果需要）。
+--proxy_username：代理的用户名（如果需要）。
 --proxy_password：代理的密码（如果需要）。
 标头
 --header，-H：格式为name：value-可以传递多个。
-：蜘蛛站点。
+```
+
+
+

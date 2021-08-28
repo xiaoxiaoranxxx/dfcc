@@ -1,4 +1,6 @@
-Meterpreter是一种先进的，可动态扩展的有效负载，它使用内存中的 DLL注入阶段，并在运行时通过网络扩展。它通过stager套接字进行通信并提供全面的客户端Ruby API。
+# Meterpreter是一种先进的，可动态扩展的有效负载
+
+它使用内存中的 DLL注入阶段，并在运行时通过网络扩展。它通过stager套接字进行通信并提供全面的客户端Ruby API。
 
 
 background=bg 会话发送到后台并返回到msf提示符
@@ -127,8 +129,8 @@ Stdapi: Networking Commands
     ipconfig      Display interfaces
     netstat       Display the network connections
     portfwd       将本地端口转发到远程服务
-		portfwd add -l 6666 -p 3389 -r 192.168.100.129
-		
+    	portfwd add -l 6666 -p 3389 -r 192.168.100.129
+    	
     resolve       Resolve a set of host names on the target
     route         View and modify the routing table
 

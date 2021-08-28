@@ -1,4 +1,6 @@
-John the Ripper是一个快速的密码破解程序，目前可用于Unix，Windows，DOS和OpenVMS的许多口味。
+# John the Ripper是一个快速的密码破解程序
+
+目前可用于Unix，Windows，DOS和OpenVMS的许多口味。
 其主要目的是检测弱Unix密码。除了在各种Unix系统上最常见的几种crypt（3）密码哈希类型之外，
 现在支持的还有Windows LM哈希，以及社区增强版本中的大量其他哈希和密码。
 
