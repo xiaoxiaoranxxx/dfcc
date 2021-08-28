@@ -193,16 +193,21 @@ which halt 显示一个二进制文件或可执行文件的完整路径
 
  运行级别 3 完全的多用户(multiuser)状态 (有 NFS)，登陆后进入控制台命令行模式
  运行级别 5 X11 控制台 (xdm、gdm、kdm)，登陆后进入图形 GUI 模式
-
+ 
+### 装x11
+```sh
 yum install -y xterm
 yum install xorg-x11-apps
 xclock
-
+```
+### 常用源
+```sh
 vim /etc/apt/sources.list
 deb http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
 deb-src http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
-                                              
-apt install open-vm-tools-desktop
+```
+### vm-tools                                        
+`apt install open-vm-tools-desktop`
 
 
 

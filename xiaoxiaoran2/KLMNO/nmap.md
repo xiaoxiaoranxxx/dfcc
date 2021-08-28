@@ -1,4 +1,4 @@
-
+```
 sudo nmap -p 22 39.107.221.203                                                 
 	22/tcp open  ssh
 
@@ -7,7 +7,8 @@ sudo nmap -p 22 39.107.221.203 -sS -sV
 
 sudo nmap  39.107.221.203  -O  
 	Running: Microsoft Windows XP
-
+```
+```
 sudo nmap  39.107.221.203  -A
 	22/tcp   open  ssh     OpenSSH 7.4 (protocol 2.0)
 	| ssh-hostkey: 
@@ -27,7 +28,8 @@ sudo nmap  39.107.221.203  -A
 	|     Connection: keep-alive
 	|     Server: xpserver/3.5.15
 	|     Content-Length: 111
-
+```
+```
 sudo nmap  39.107.221.203  -A -sS -oN ./1.txt
 
 sudo nmap  39.107.221.203  --script=./home/vulscan.nse -oN 2.txt
@@ -46,6 +48,7 @@ sudo nmap --script ipidseq -iR 1000 -oN xiaiii.txt
 
 sudo nmap -Pn -sI ip:port 1.1.1.1
 
+```
 
 Nmap突破防火墙扫描 常见思路
 1、碎片扫描
@@ -77,7 +80,7 @@ nmap -g 80 -S www.baidu.com www.fujieace.com
 
 nmap -p80 --script http-methods --script-args http.useragent=”Mozilla 5” www.fujieace.com
 
-
+```
 使用方法:nmap [Scan Type(s)] [Options] {target specification}
 目标说明:
 可以通过主机名，IP地址，网络等。
@@ -191,9 +194,9 @@ nmap -v -A
 nmap -v -sn 192.168.0.0/16 10.0.0.0/8
 nmap -v -iR 10000 -Pn -p 80
 更多选项和例子，请参阅手册页(https://nmap.org/book/man.html)
+```
 
-
-
+```
 Nmap 7.91 ( https://nmap.org )
 Usage: nmap [Scan Type(s)] [Options] {target specification}                                     
 TARGET SPECIFICATION:
@@ -309,3 +312,4 @@ EXAMPLES:
   nmap -v -iR 10000 -Pn -p 80
 SEE THE MAN PAGE (https://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES
 
+```

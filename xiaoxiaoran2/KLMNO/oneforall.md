@@ -1,13 +1,14 @@
-OneForAll是一款功能强大的子域收集工具
+## OneForAll是一款功能强大的子域收集工具
 
+```
 git clone https://github.com.cnpmjs.org/shmilylty/OneForAll.git
 pip3 install -r requirements.txt 
+```
+
+`python3 oneforall.py --target zhihu.com run`
 
 
-	python3 oneforall.py --target zhihu.com run
-
-
-
+```
 DESCRIPTION
     OneForAll是一款功能强大的子域收集工具
 
@@ -48,8 +49,8 @@ DESCRIPTION
         结果保存路径(默认None)
     --takeover=TAKEOVER
         检查子域接管(默认False)
-		
-		
+```	
+```		
 baidu.com.csv是每个主域下的子域收集结果。
 
 all_subdomain_result_1583034493.csv是每次运行OneForAll收集到子域的汇总结果，包含baidu.com.csv，方便在批量收集场景中获取全部结果。
@@ -65,3 +66,4 @@ Database
 其中类似baidu_com_last_result表存放上一次子域收集结果（需要收集两次以上才会生成）。
 
 其中类似baidu_com_now_result表存放现在子域收集结果，一般情况关注这张表就可以了。
+```

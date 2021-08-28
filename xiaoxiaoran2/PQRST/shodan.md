@@ -1,6 +1,9 @@
-
+## 安装
+```
 $ easy_install shodan
-
+pip install shodan
+```
+```
 shodan host 39.107.221.203
 	39.107.221.203
 	City:                    Beijing
@@ -12,7 +15,8 @@ shodan host 39.107.221.203
 
 	Ports: 
 		 80/tcp Apache httpd (2.4.39)
-
+```
+```
 shodan honeyscore 39.107.221.203
 
 shodan host  39.107.221.203 --history
@@ -31,3 +35,4 @@ shodan stats vuln:cve-2019-0708
 
 shodan stats --facets org:20 vuln:cve-2019-0708 tag:cloud
 
+```
