@@ -103,6 +103,14 @@ find / -xdev -name \*.rpm 搜索以 '.rpm' 结尾的文件，忽略光驱、捷�
 locate \*.ps 寻找以 '.ps' 结尾的文件 - 先运行 'updatedb' 命令 
 whereis halt 显示一个二进制文件、源码或man的位置 
 which halt 显示一个二进制文件或可执行文件的完整路径 
+
+cat：  由第一行开始显示文件内容
+tac ：从最后一行开始显示，可以看出 tac 是 cat 的倒著写！
+nl：   显示的时候，顺道输出行号！
+more ：一页一页的显示文件内容
+less ：与 more 类似，但是比 more 更好的是，他可以往前翻页！
+head ：只看头几行
+tail： 只看尾巴几行
 ```
 
 
@@ -193,7 +201,7 @@ which halt 显示一个二进制文件或可执行文件的完整路径
 
  运行级别 3 完全的多用户(multiuser)状态 (有 NFS)，登陆后进入控制台命令行模式
  运行级别 5 X11 控制台 (xdm、gdm、kdm)，登陆后进入图形 GUI 模式
- 
+
 ### 装x11
 ```sh
 yum install -y xterm
