@@ -1,10 +1,10 @@
-![xiao](https://img-blog.csdnimg.cn/20210518211707779.png#pic_center)
+![xiao](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/logo.png)
 
 
 
 # Welcome to Xiao Xiaoran's Penetration journey
 
-<img src="https://ss2.baidu.com/6ON1bjeh1BF3odCf/it/u=3356192396,2960287268&fm=15&gp=0.jpg" width="100%" height="100%" >
+<img src="https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/23.jpg" width="100%" height="100%" >
 
 
 # 肖萧然如冯虚御风而不知其所止
@@ -79,7 +79,7 @@ It's my growth<br/>
 And you'll ride the waves<br/>
 
 
-<img src="https://ss2.baidu.com/6ON1bjeh1BF3odCf/it/u=2095491990,3815431535&fm=15&gp=0.jpg" width="50%" ><img src="https://userblink.csdnimg.cn/20210601/qq_52549196/pic/df47296548e1b37ecc93ab16cb1d2561-0.png?x-oss-process=image/resize,w_375" width="50%" >
+<img src="https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/0.jpg" width="50%" ><img src="https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/df47296548e1b37ecc93ab16cb1d2561-0.png" width="50%" >
 
 
 

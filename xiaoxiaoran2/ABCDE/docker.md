@@ -57,11 +57,11 @@ docker rm id... 删容器
 
 
 ​	
-	docker start id...
-	docker restart id...
-	docker stop id...
-	docker kill id...
-	
+​	docker start id...
+​	docker restart id...
+​	docker stop id...
+​	docker kill id...
+​	
 	docker logs -tf --tail 100  078fdfa5283a  查看日志
 	docker top id.. 
 	docker top 7ba0281c97c2   容器中的进程
@@ -201,8 +201,9 @@ docker run -it -v /home/xiaoxiaoran:/home/centos_xiaoxiaoran  centos /bin/bash
 	link/ether be:49:2d:bb:2a:72 brd ff:ff:ff:ff:ff:ff link-netnsid 1
 	inet6 fe80::bc49:2dff:febb:2a72/64 scope link 
 	   valid_lft forever preferred_lft forever
-	 
-	 
+
+
+​	 
 
 ### kali
 
