@@ -15,6 +15,7 @@
 # Directory Structure -->DFCC
 # xiaoxiaoran1
 + Batchfile
++ Crypto
 + Ebb Tide
 + Evolutionary Paths
 + Shell
@@ -78,16 +79,14 @@ The courage of the journey<br/>
 It's my growth<br/>
 And you'll ride the waves<br/>
 
-
-<img src="https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/0.jpg" width="50%" ><img src="https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/xiu.png" width="50%" >
-
+<img src="https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/0.jpg" width="50%" ><img src="https://userblink.csdnimg.cn/20210601/qq_52549196/pic/df47296548e1b37ecc93ab16cb1d2561-0.png?x-oss-process=image/resize,w_375" width="50%" >
 
 
 
 
-*xiaoxiaoran学习的技术来自于*<br>
-*-->红客,抖音,b站,腾讯课堂,韩立刚,橘子女侠*<br>
-*-->老男孩教育,学神it,心东,千峰教育*<br>
-*-->传智播客,小迪,51CTO,遇见狂神说* <br>
-*-->百度,aol,CSDN,付杰博客,DeelMind* <br>
-*在此向以上平台和个人表示由衷的感谢,感谢你们...*
+
+*xiaoxiaoran*学习的技术来自于<br>
+**红客,抖音,b站,腾讯课堂,韩立刚,橘子女侠,老男孩教育,学神it,心东,千峰教育**<br>
+**传智播客,小迪,51CTO,遇见狂神说,百度,aol,CSDN,付杰博客,DeelMind** <br>
+*在此向以上平台和个人表示由衷的感谢...*
+
