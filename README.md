@@ -79,7 +79,7 @@ It's my growth<br/>
 And you'll ride the waves<br/>
 
 
-<img src="https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/0.jpg" width="50%" ><img src="https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/df47296548e1b37ecc93ab16cb1d2561-0.png" width="50%" >
+<img src="https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/0.jpg" width="50%" ><img src="https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/xiu.png" width="50%" >
 
 
 
