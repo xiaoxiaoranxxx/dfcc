@@ -51,7 +51,7 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAAGQCAIAAABkkLjnAAAAAXNSR0IArs
 
 ## 使用ps拼接得
 
-![](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202109212245421.png)
+![00000073](https://img-blog.csdnimg.cn/img_convert/0c18b5bb2d0e12f01460544350e8a291.png)![download](https://img-blog.csdnimg.cn/img_convert/754646f502df0bc9aecc620da1bfd379.png)
 
 - 扫码得
 

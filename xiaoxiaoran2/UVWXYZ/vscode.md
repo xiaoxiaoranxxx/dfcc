@@ -15,5 +15,16 @@
 "editor.suggest.preview": true    //2021 年 8 月（版本 1.60）
 ```
 
+## 智能选择
 
+```
+要扩展选择，请使用Shift+Alt+Right。
+要缩小选区，请使用Shift+Alt+Left。
+```
+
+## java加载模式
+
+```
+java.server.launchMode
+```
 
