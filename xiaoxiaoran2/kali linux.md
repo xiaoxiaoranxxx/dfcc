@@ -219,4 +219,13 @@ deb-src http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
 
 
 
-​	
+## debian 安装kali
+
+```
+https://apt.metasploit.com/
+
+wget https://apt.metasploit.com/pool/main/m/metasploit-framework/metasploit-framework_6.1.8%2B20210926102543~1rapid7-1_amd64.deb
+dpkg -i metasploit-framework_6.1.8+20210930093344~1rapid7-1_arm64.deb 
+
+```
+
