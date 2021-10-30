@@ -229,3 +229,14 @@ dpkg -i metasploit-framework_6.1.8+20210930093344~1rapid7-1_arm64.deb
 
 ```
 
+
+
+## 开机进入命令行
+
+```
+systemctl get-default
+systemctl set-default multi-user.target 
+systemctl get-default
+reboot
+```
+
