@@ -17,7 +17,7 @@ unalias fire
 systemctl start httpd
 systemctl enable httpd 
 ```
-
+    
 ## 命令
 
 ```
