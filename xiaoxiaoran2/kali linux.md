@@ -240,3 +240,9 @@ systemctl get-default
 reboot
 ```
 
+## 共享文件夹
+去除root,编辑 vi /etc/fstab: 在最后添加一行：
+
+```
+ .host:/ /mnt/hgfs fuse.vmhgfs-fuse allow_other 0 0
+```
