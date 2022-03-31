@@ -238,6 +238,86 @@ kali -> 6: eth0@if7 -> 7: vethb7a6d3d@if6 -> docker0(路由器)
 	docker network connect mynetname kali02  一个容器,两个ip
 
 
-​	
+
+
+
+传统方式是在硬件层面实现虚拟化，需要有额外的虚拟机管理应用和虚拟机操作系统
+Docker 容器是在操作系统层面上实现虚拟化，直接复用本地主机的操作系统，因此更加轻量级
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/ea63816245be4a318cd3c7b7a81b9409.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6IKW6JCn54S2,size_20,color_FFFFFF,t_70,g_se,x_16)
+## 更换国内源
+```
+ vim /etc/docker/daemon.json
+
+{
+"registry-mirrors": ["https://docker.mirrors.ustc.edu.cn"]
+}
+
+
+systemctl restart docker.service
+```
+
+#  Docker镜像操作
+Docker 运行容器前需要本地存在对应的镜像， 如果镜像不存在， 
+
+Docker 会尝试先从默镜像仓库下载
+
+```
+docker pull mysql
+
+docker rmi -f id...     删镜像
+
+docker search mysql    搜寻镜像
+ 
+docker images   查看镜像
+
+docker  inspect nginx  查看详细信息
+
+```
+
+# Docker 容器操作 
+容器是 Docker 的另 个核心概念 简单来说，容器是镜像的一个运行实例。所不同的是，**镜像是静态的只读文件**，而容器带有运行时需要的可写文件层，同时，容器中的应用进程处于运行状态
+
+如果认为虚拟机是模拟运行的一整套操作系统（包括内核 应用运行态环境和其他系统环境）和跑在上面的应用 那么 Docker 容器就是独立运行的一个（或一组）应用，以及它们必需的运行环境
+
+## 启动一个容器
+
+-  启动一个nginx服务
+```
+docker  run -d --name nginx_1 -p 3333:80 nginx
+```
+
+ -d  在后台运行容器
+-p 端口映射
+ --name  命名  nginx_1 
+
+ 
+- 查看运行的容器
+```
+docker ps
+```
+
+
+## 容器启动与关闭
+```
+    docker stop nginx_1
+	docker start nginx_1
+
+	docker start id...
+​	docker restart id...
+​	docker stop id...
+​	docker kill id...
+
+```
+
+
+
+
+
+
+
+
+
+
 ​	
 ​	
